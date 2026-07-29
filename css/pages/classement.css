@@ -25,7 +25,7 @@
 .cl td.pos{font-family:var(--ff-head); font-weight:700; width:46px; font-size:16px}
 .cl td.team{text-align:left; min-width:190px}
 .cl td.pts{font-family:var(--ff-head); font-weight:700; color:var(--gold); font-size:17px}
-.cl td.diff.plus{color:#7fe0b3}
+.cl td.diff.plus{color:#e8c977}
 .cl td.diff.minus{color:#e89b93}
 
 /* zones (liseré gauche) */
@@ -45,7 +45,7 @@
 .cl .forme i{width:16px; height:16px; border-radius:4px; font-style:normal;
   font-family:var(--ff-head); font-size:10px; font-weight:600;
   display:inline-flex; align-items:center; justify-content:center}
-.cl .forme .fG{background:var(--green-bg); color:#7fe0b3}
+.cl .forme .fG{background:var(--green-bg); color:#e8c977}
 .cl .forme .fN{background:var(--dim-bg); color:var(--muted)}
 .cl .forme .fP{background:#331512; color:#e89b93}
 

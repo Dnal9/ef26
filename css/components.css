@@ -74,7 +74,7 @@
 .mc .mc-time{font-family:var(--ff-head); font-size:15px; color:var(--muted); letter-spacing:1px}
 .mc .mc-tag{font-family:var(--ff-head); font-size:10px; letter-spacing:1px; text-transform:uppercase;
   padding:2px 8px; border-radius:20px}
-.mc .mc-tag.done{background:var(--green-bg); color:#7fe0b3}
+.mc .mc-tag.done{background:var(--green-bg); color:#e8c977}
 .mc .mc-tag.next{background:var(--amber-bg); color:var(--gold)}
 
 /* ---------- STAT CARD ---------- */
@@ -101,7 +101,7 @@
 /* ---------- TAGS / ZONES ---------- */
 .tag{font-family:var(--ff-head); font-size:10.5px; letter-spacing:.5px; text-transform:uppercase;
   padding:3px 8px; border-radius:20px; white-space:nowrap}
-.tag.q{background:var(--green-bg); color:#7fe0b3}
+.tag.q{background:var(--green-bg); color:#e8c977}
 .tag.b{background:var(--amber-bg); color:var(--gold)}
 .tag.o{background:var(--dim-bg); color:var(--dim)}
 .legend{display:flex; gap:18px; flex-wrap:wrap; margin:12px 4px 0; font-size:14px; color:var(--muted)}

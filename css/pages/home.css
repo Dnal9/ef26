@@ -8,7 +8,7 @@
   border:1px solid var(--line-2); border-radius:var(--radius);
   background:
     radial-gradient(720px 240px at 18% -40%, rgba(232,178,58,.20), transparent 60%),
-    radial-gradient(520px 200px at 90% 0%,  rgba(57,224,185,.08), transparent 60%),
+    radial-gradient(520px 200px at 90% 0%,  rgba(214,203,176,.08), transparent 60%),
     linear-gradient(180deg,#12241a,#0c1a12);
   box-shadow:var(--shadow-lg); overflow:hidden;
 }
@@ -34,7 +34,7 @@
   background:#0c1a14}
 .hero-live .pulse{width:8px; height:8px; border-radius:50%; background:var(--teal);
   animation:pulse 1.8s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(57,224,185,.5)}70%{box-shadow:0 0 0 9px rgba(57,224,185,0)}100%{box-shadow:0 0 0 0 rgba(57,224,185,0)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(214,203,176,.5)}70%{box-shadow:0 0 0 9px rgba(214,203,176,0)}100%{box-shadow:0 0 0 0 rgba(214,203,176,0)}}
 
 /* ---------- GRILLE MATCHS DU JOUR ---------- */
 .home-duo{display:grid; grid-template-columns:1fr 1fr; gap:14px}

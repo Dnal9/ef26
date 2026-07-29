@@ -32,7 +32,7 @@
   transition:color .15s, border-color .15s;
 }
 .mx-chip:hover{color:var(--bone)}
-.mx-chip.active{color:var(--teal); border-color:var(--teal); background:rgba(57,224,185,.07)}
+.mx-chip.active{color:var(--teal); border-color:var(--teal); background:rgba(214,203,176,.07)}
 
 /* ---------- BLOCS JOURNÉE ---------- */
 .mx-day{margin-bottom:22px}

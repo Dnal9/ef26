@@ -1,35 +1,36 @@
 /* ============================================================
    EF26 · FINAL CHAPTER — css/tokens.css
+   Thème : NOIR & OR (luxe minimal)
    Source unique de vérité du design. Tout le site pioche ici.
    ============================================================ */
 :root{
-  /* --- Couleurs : nuit de stade, or de champion --- */
-  --bg:        #081310;
-  --bg-2:      #0b1a13;
-  --panel:     #102019;
-  --panel-2:   #0d1b14;
-  --line:      #20362b;
-  --line-2:    #2b4739;
+  /* --- Couleurs : noir profond, or de champion --- */
+  --bg:        #0c0c0d;
+  --bg-2:      #121211;
+  --panel:     #17171a;
+  --panel-2:   #141413;
+  --line:      #2a2823;
+  --line-2:    #3a3730;
 
   --gold:      #e8b23a;
   --gold-lt:   #f7da86;
   --gold-dp:   #b8862a;
-  --teal:      #39e0b9;
-  --bone:      #edece3;
-  --muted:     #8fa79b;
-  --dim:       #6b7d73;
+  --teal:      #d6cbb0;   /* accent secondaire = argent chaud / champagne */
+  --bone:      #f2f0ea;
+  --muted:     #9a968a;
+  --dim:       #6a665c;
 
-  --green:     #31b07a;
-  --amber:     #d99a2b;
+  --green:     #d0a83e;   /* zone "qualifié" = or clair */
+  --amber:     #c98a2b;   /* zone "barrage"  = or foncé/bronze */
   --red:       #c0554b;
-  --green-bg:  #123626;
-  --amber-bg:  #33280f;
-  --dim-bg:    #1a241f;
+  --green-bg:  #2a2210;
+  --amber-bg:  #241a0c;
+  --dim-bg:    #1c1b17;
 
   /* --- Typographie --- */
-  --ff-disp: "Anton", sans-serif;                                /* titres écran */
-  --ff-head: "Oswald", sans-serif;                               /* sous-titres, labels */
-  --ff-body: "Barlow Condensed","Segoe UI",system-ui,sans-serif; /* texte */
+  --ff-disp: "Anton", sans-serif;
+  --ff-head: "Oswald", sans-serif;
+  --ff-body: "Barlow Condensed","Segoe UI",system-ui,sans-serif;
 
   --fs-hero:  clamp(38px, 7vw, 64px);
   --fs-h2:    20px;
@@ -44,8 +45,8 @@
   --radius:    14px;
   --radius-sm: 9px;
   --radius-xs: 6px;
-  --shadow:    0 10px 30px rgba(0,0,0,.35);
-  --shadow-lg: 0 20px 60px rgba(0,0,0,.45);
+  --shadow:    0 10px 30px rgba(0,0,0,.45);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,.6);
   --glow-gold: 0 0 14px rgba(232,178,58,.5);
 
   /* --- Divers --- */

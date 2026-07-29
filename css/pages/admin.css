@@ -45,7 +45,7 @@
 .ad-m .stt{font-family:var(--ff-head); font-size:10px; letter-spacing:1px;
   text-transform:uppercase; padding:3px 9px; border-radius:20px; white-space:nowrap;
   justify-self:end}
-.ad-m .stt.done{background:var(--green-bg); color:#7fe0b3}
+.ad-m .stt.done{background:var(--green-bg); color:#e8c977}
 .ad-m .stt.next{background:var(--amber-bg); color:var(--gold)}
 @media (max-width:640px){
   .ad-m{grid-template-columns:1fr auto 1fr; row-gap:6px}

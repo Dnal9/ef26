@@ -123,7 +123,7 @@
   function celebrate() {
     var cv = U.$("bk-confetti"); if (!cv) return;
     var ctx = cv.getContext("2d"), W = cv.width = innerWidth, H = cv.height = innerHeight;
-    var cols = ["#e8b23a", "#f7da86", "#39e0b9", "#edece3", "#31b07a"];
+    var cols = ["#e8b23a", "#f7da86", "#d6cbb0", "#f2f0ea", "#b8862a"];
     var parts = [];
     for (var i = 0; i < 170; i++) parts.push({
       x: Math.random() * W, y: -20 - Math.random() * H * .4, r: 4 + Math.random() * 6,

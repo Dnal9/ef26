@@ -13,14 +13,14 @@ body{
 body::before{
   content:""; position:fixed; inset:0; z-index:-2;
   background:
-    radial-gradient(1200px 620px at 50% -12%, rgba(232,178,58,.12), transparent 62%),
-    radial-gradient(900px 520px at 100% 4%,  rgba(57,224,185,.07), transparent 60%),
-    radial-gradient(900px 520px at 0% 8%,    rgba(57,224,185,.05), transparent 60%),
-    linear-gradient(180deg,#0d1f16 0%, #081310 55%, #060d09 100%);
+    radial-gradient(1200px 620px at 50% -12%, rgba(232,178,58,.14), transparent 62%),
+    radial-gradient(900px 520px at 100% 4%,  rgba(232,178,58,.05), transparent 60%),
+    radial-gradient(900px 520px at 0% 8%,    rgba(214,203,176,.04), transparent 60%),
+    linear-gradient(180deg,#141311 0%, #0c0c0d 55%, #070707 100%);
 }
 body::after{
-  content:""; position:fixed; inset:0; z-index:-1; opacity:.045; pointer-events:none;
-  background-image:repeating-linear-gradient(90deg,#7fd8b0 0 2px, transparent 2px 86px);
+  content:""; position:fixed; inset:0; z-index:-1; opacity:.03; pointer-events:none;
+  background-image:repeating-linear-gradient(90deg,#e8b23a 0 1px, transparent 1px 92px);
 }
 
 a{color:inherit; text-decoration:none}

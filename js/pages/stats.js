@@ -19,7 +19,7 @@
   /* ---------- palette des graphes ---------- */
   var CH = {
     grid: "rgba(143,167,155,.18)", label: "#8fa79b", bone: "#edece3",
-    gold: "#e8b23a", goldLt: "#f7da86", teal: "#39e0b9", dim: "#3a4f43",
+    gold: "#e8b23a", goldLt: "#f7da86", teal: "#d6cbb0", dim: "#3a4f43",
     fontS: '500 11px "Oswald", sans-serif', fontM: '600 12px "Barlow Condensed", sans-serif'
   };
 
@@ -85,7 +85,7 @@
       /* barre */
       if (r.pts > 0) {
         var grad = ctx.createLinearGradient(padL, 0, padL + bw, 0);
-        grad.addColorStop(0, i < 3 ? "#b8862a" : "#2b6b52");
+        grad.addColorStop(0, i < 3 ? "#b8862a" : "#8a6b2a");
         grad.addColorStop(1, i < 3 ? CH.goldLt : CH.teal);
         ctx.fillStyle = grad;
         roundRect(ctx, padL, y + (rowH - bh) / 2, bw, bh, bh / 2); ctx.fill();

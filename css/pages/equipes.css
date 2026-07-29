@@ -25,7 +25,7 @@
 .eq-head .tb-name{font-family:var(--ff-head); font-size:17px; font-weight:600}
 .eq-head .eq-rank{margin-left:auto; text-align:right}
 .eq-head .eq-rank .r{font-family:var(--ff-disp); font-size:22px; line-height:1}
-.eq-head .eq-rank .r.z-q{color:#7fe0b3}
+.eq-head .eq-rank .r.z-q{color:#e8c977}
 .eq-head .eq-rank .r.z-b{color:var(--gold)}
 .eq-head .eq-rank .r.z-o{color:var(--dim)}
 .eq-head .eq-rank .pot{font-family:var(--ff-head); font-size:10px; letter-spacing:1px;
@@ -46,7 +46,7 @@
 .eq-forme .forme{display:inline-flex; gap:3px}
 .eq-forme .forme i{width:17px; height:17px; border-radius:4px; font-style:normal;
   font-size:10px; font-weight:600; display:inline-flex; align-items:center; justify-content:center}
-.eq-forme .fG{background:var(--green-bg); color:#7fe0b3}
+.eq-forme .fG{background:var(--green-bg); color:#e8c977}
 .eq-forme .fN{background:var(--dim-bg); color:var(--muted)}
 .eq-forme .fP{background:#331512; color:#e89b93}
 .eq-forme .none{color:var(--dim); text-transform:none; letter-spacing:.2px}
@@ -66,7 +66,7 @@
 .eq-row .sc{font-family:var(--ff-head); font-weight:600; letter-spacing:1px}
 .eq-row .res{width:17px; height:17px; border-radius:4px; font-family:var(--ff-head);
   font-size:10px; font-weight:600; display:inline-flex; align-items:center; justify-content:center}
-.eq-row .rG{background:var(--green-bg); color:#7fe0b3}
+.eq-row .rG{background:var(--green-bg); color:#e8c977}
 .eq-row .rN{background:var(--dim-bg); color:var(--muted)}
 .eq-row .rP{background:#331512; color:#e89b93}
 .eq-row.up .sc{color:var(--muted); font-weight:500}
