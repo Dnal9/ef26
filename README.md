@@ -51,7 +51,13 @@ source et n'empêche pas quelqu'un de motivé de modifier ses données locales.
 Chaque visiteur a d'ailleurs **sa propre copie** des données (localStorage) :
 pour que tout le monde voie TES résultats en direct, il faut la Phase Firebase.
 
-## Phase suivante — Firebase (temps réel + vraie sécurité)
+## Firebase — ACTIF (temps réel)
+
+Le site est branché sur Firebase Realtime Database : toute saisie dans
+l'admin est visible par tous les visiteurs en direct. Règles à coller
+dans la console : voir FIREBASE-REGLES.txt.
+
+## Durcir la sécurité plus tard
 
 Le code est prêt : seul `js/store.js` change.
 

@@ -1,0 +1,30 @@
+========================================================
+EF26 — RÈGLES DE SÉCURITÉ FIREBASE
+========================================================
+
+ÉTAPE : Console Firebase → Realtime Database → onglet "Règles"
+Colle CECI, puis clique "Publier".
+
+--------- POUR DÉMARRER MAINTENANT (lecture publique) ---------
+{
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}
+
+  → Tout le monde peut LIRE (parfait : tes joueurs voient les scores).
+  → L'écriture reste ouverte pour l'instant. Le formulaire admin est
+    protégé par mot de passe côté site, mais ce n'est pas une vraie
+    serrure. Pour verrouiller l'écriture à TOI seul, passe à l'étape
+    suivante quand tu veux (Firebase Auth) — demande-moi et je te guide.
+
+--------- PLUS TARD : ÉCRITURE RÉSERVÉE À TOI (Firebase Auth) ---------
+{
+  "rules": {
+    ".read": true,
+    ".write": "auth != null"
+  }
+}
+  (nécessite d'activer Authentication + une connexion e-mail dans l'admin)
+========================================================
