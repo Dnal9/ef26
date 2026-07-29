@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EF26 · Final Chapter — Accueil</title>
+<meta name="description" content="EF26 Final Chapter — tournoi eFootball à 20 équipes : classement en direct, calendrier des matchs, statistiques et tableau final.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/home.css">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-row">
+      <div class="hero-logo">
+        <img src="assets/logo-ef26.svg" width="92" height="92" alt="Logo EF26">
+      </div>
+      <div class="hero-titles">
+        <div class="hero-kicker">Compétition eFootball · Édition 2026</div>
+        <h1 class="hero-title"><span class="a">FINAL</span> <span class="b">CHAPTER</span></h1>
+        <div class="hero-tag">20 équipes · 1 seul survivant</div>
+      </div>
+      <div class="hero-live"><span class="pulse"></span> En direct</div>
+    </div>
+  </header>
+
+  <!-- PROCHAIN MATCH / DERNIER RÉSULTAT -->
+  <h2 class="sec"><span class="tick"></span>À l'affiche</h2>
+  <div class="home-duo">
+    <div class="card"><div class="duo-lab">Prochain match</div><div id="h-next"></div></div>
+    <div class="card"><div class="duo-lab">Dernier résultat</div><div id="h-last"></div></div>
+  </div>
+
+  <!-- PODIUM -->
+  <h2 class="sec"><span class="tick"></span>Top 3 du championnat</h2>
+  <div class="podium" id="h-podium"></div>
+
+  <!-- CHIFFRES CLÉS -->
+  <h2 class="sec"><span class="tick"></span>Chiffres clés</h2>
+  <div class="stats-grid" id="h-stats"></div>
+
+  <!-- ACCÈS RAPIDE -->
+  <h2 class="sec"><span class="tick"></span>Explorer</h2>
+  <div class="quick">
+    <a class="qk" href="classement.html">
+      <span class="qi">🏆</span><span class="qt">Classement</span>
+      <span class="qs">Positions, zones et podium</span><span class="qa">Voir →</span>
+    </a>
+    <a class="qk" href="matchs.html">
+      <span class="qi">📅</span><span class="qt">Matchs</span>
+      <span class="qs">Les 5 journées, scores et calendrier</span><span class="qa">Voir →</span>
+    </a>
+    <a class="qk" href="eliminatoires.html">
+      <span class="qi">⚔️</span><span class="qt">Éliminatoires</span>
+      <span class="qs">Barrages, quarts, demis, finale</span><span class="qa">Voir →</span>
+    </a>
+    <a class="qk" href="statistiques.html">
+      <span class="qi">📊</span><span class="qt">Statistiques</span>
+      <span class="qs">Attaque, défense, records</span><span class="qa">Voir →</span>
+    </a>
+    <a class="qk" href="equipes.html">
+      <span class="qi">🛡️</span><span class="qt">Équipes</span>
+      <span class="qs">Fiches, historique, prochains matchs</span><span class="qa">Voir →</span>
+    </a>
+  </div>
+
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/store.js"></script>
+<script src="js/logic.js"></script>
+<script src="js/components.js"></script>
+<script src="js/pages/home.js"></script>
+</body>
+</html>

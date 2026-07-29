@@ -1,0 +1,73 @@
+/* ============================================================
+   EF26 — css/pages/equipes.css : identité de la page Équipes
+   ============================================================ */
+
+/* ---------- BARRE D'OUTILS ---------- */
+.eq-toolbar{display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:14px}
+.eq-search{position:relative; flex:1 1 220px; max-width:340px}
+.eq-search input{padding-left:36px; height:42px; font-size:16px}
+.eq-search .ic{position:absolute; left:12px; top:50%; transform:translateY(-50%);
+  color:var(--muted); font-size:15px; pointer-events:none}
+.eq-count{font-family:var(--ff-head); font-size:12px; letter-spacing:1px;
+  text-transform:uppercase; color:var(--muted)}
+
+/* ---------- GRILLE ---------- */
+.eq-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px}
+
+/* ---------- CARTE ÉQUIPE ---------- */
+.eq{scroll-margin-top:calc(var(--nav-h) + 14px); display:flex; flex-direction:column;
+  transition:border-color .2s, box-shadow .2s}
+.eq:target{border-color:var(--gold); box-shadow:0 0 0 3px rgba(232,178,58,.18), var(--shadow-lg)}
+
+.eq-head{display:flex; align-items:center; gap:12px; padding:14px 16px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(90deg,#14261c,transparent)}
+.eq-head .tb-name{font-family:var(--ff-head); font-size:17px; font-weight:600}
+.eq-head .eq-rank{margin-left:auto; text-align:right}
+.eq-head .eq-rank .r{font-family:var(--ff-disp); font-size:22px; line-height:1}
+.eq-head .eq-rank .r.z-q{color:#7fe0b3}
+.eq-head .eq-rank .r.z-b{color:var(--gold)}
+.eq-head .eq-rank .r.z-o{color:var(--dim)}
+.eq-head .eq-rank .pot{font-family:var(--ff-head); font-size:10px; letter-spacing:1px;
+  text-transform:uppercase; color:var(--muted)}
+
+/* stats */
+.eq-stats{display:grid; grid-template-columns:repeat(4,1fr); text-align:center;
+  padding:10px 8px; border-bottom:1px solid var(--line)}
+.eq-stats .v{font-family:var(--ff-head); font-weight:700; font-size:17px}
+.eq-stats .v.gold{color:var(--gold)}
+.eq-stats .k{font-family:var(--ff-head); font-size:10px; letter-spacing:1px;
+  text-transform:uppercase; color:var(--muted); margin-top:1px}
+
+/* forme */
+.eq-forme{display:flex; align-items:center; gap:8px; padding:9px 16px;
+  border-bottom:1px solid var(--line); font-family:var(--ff-head);
+  font-size:10.5px; letter-spacing:1px; text-transform:uppercase; color:var(--muted)}
+.eq-forme .forme{display:inline-flex; gap:3px}
+.eq-forme .forme i{width:17px; height:17px; border-radius:4px; font-style:normal;
+  font-size:10px; font-weight:600; display:inline-flex; align-items:center; justify-content:center}
+.eq-forme .fG{background:var(--green-bg); color:#7fe0b3}
+.eq-forme .fN{background:var(--dim-bg); color:var(--muted)}
+.eq-forme .fP{background:#331512; color:#e89b93}
+.eq-forme .none{color:var(--dim); text-transform:none; letter-spacing:.2px}
+
+/* listes de matchs */
+.eq-sec{padding:10px 16px 12px}
+.eq-sec + .eq-sec{border-top:1px solid var(--line)}
+.eq-sec .t{font-family:var(--ff-head); font-size:10.5px; letter-spacing:1.5px;
+  text-transform:uppercase; color:var(--muted); margin-bottom:7px;
+  display:flex; align-items:center; gap:7px}
+.eq-sec .t::before{content:""; width:6px; height:12px; background:var(--gold);
+  border-radius:2px; opacity:.8}
+.eq-row{display:flex; align-items:center; gap:8px; font-size:14px; padding:4px 0}
+.eq-row .j{font-family:var(--ff-head); font-size:10.5px; color:var(--dim); min-width:20px}
+.eq-row .opp{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  color:var(--bone)}
+.eq-row .sc{font-family:var(--ff-head); font-weight:600; letter-spacing:1px}
+.eq-row .res{width:17px; height:17px; border-radius:4px; font-family:var(--ff-head);
+  font-size:10px; font-weight:600; display:inline-flex; align-items:center; justify-content:center}
+.eq-row .rG{background:var(--green-bg); color:#7fe0b3}
+.eq-row .rN{background:var(--dim-bg); color:var(--muted)}
+.eq-row .rP{background:#331512; color:#e89b93}
+.eq-row.up .sc{color:var(--muted); font-weight:500}
+.eq-empty-row{color:var(--dim); font-size:13.5px; padding:2px 0}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EF26 · Final Chapter — Équipes</title>
+<meta name="description" content="Les 20 équipes du tournoi eFootball EF26 Final Chapter : fiches, statistiques, historique et prochains matchs.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/equipes.css">
+</head>
+<body>
+<div class="wrap">
+
+  <h2 class="sec"><span class="tick"></span>Les 20 équipes</h2>
+  <div class="eq-toolbar">
+    <div class="eq-search">
+      <span class="ic">🔍</span>
+      <input id="eq-q" type="search" placeholder="Rechercher une équipe…" autocomplete="off">
+    </div>
+    <span class="eq-count" id="eq-count">20 équipes</span>
+  </div>
+
+  <div class="eq-grid" id="eq-grid"></div>
+
+  <p class="hint" style="margin-top:14px">Les fiches sont triées selon le classement en direct. Depuis les autres pages, cliquer sur une équipe mène directement à sa fiche.</p>
+
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/store.js"></script>
+<script src="js/logic.js"></script>
+<script src="js/components.js"></script>
+<script src="js/pages/equipes.js"></script>
+</body>
+</html>

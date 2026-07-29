@@ -1,0 +1,71 @@
+/* ============================================================
+   EF26 — css/pages/bracket.css : identité de la page Éliminatoires
+   ============================================================ */
+
+/* ---------- SCÈNE ---------- */
+.bk-stage{position:relative; overflow-x:auto; padding:26px 18px 30px;
+  -webkit-overflow-scrolling:touch}
+.bk-grid{position:relative; display:flex; min-width:900px; z-index:1}
+.bk-svg{position:absolute; inset:0; z-index:0; pointer-events:none}
+
+/* ---------- COLONNES ---------- */
+.bk-col{flex:1; min-width:200px; display:flex; flex-direction:column;
+  justify-content:space-around; gap:18px; padding:34px 20px 0; position:relative}
+.bk-col-title{position:absolute; top:0; left:0; right:0; text-align:center;
+  font-family:var(--ff-head); font-weight:600; text-transform:uppercase;
+  letter-spacing:2px; font-size:13px; color:var(--muted)}
+.bk-col-title b{color:var(--gold); font-weight:600}
+
+/* ---------- CONFRONTATIONS ---------- */
+.bk-tie{background:linear-gradient(180deg,var(--panel),var(--panel-2));
+  border:1px solid var(--line); border-radius:var(--radius-sm); overflow:hidden;
+  box-shadow:0 8px 22px rgba(0,0,0,.30); position:relative; z-index:1;
+  transition:border-color .18s, transform .18s var(--ease)}
+.bk-tie:hover{border-color:var(--line-2); transform:translateY(-2px)}
+.bk-tie.decided{border-color:var(--gold-dp)}
+.bk-slot{display:flex; align-items:center; gap:10px; padding:11px 12px;
+  border-bottom:1px solid var(--line); font-size:15px}
+.bk-slot:last-child{border-bottom:none}
+.bk-slot .seed{font-family:var(--ff-head); font-size:11px; color:var(--muted);
+  min-width:18px; text-align:center}
+.bk-slot .tb{flex:1; min-width:0}
+.bk-slot.win{background:linear-gradient(90deg,#1e3117,#17291b)}
+.bk-slot.win .tb-name{color:var(--gold); font-weight:600}
+.bk-slot.win .seed{color:var(--gold)}
+.bk-slot.lose{opacity:.55}
+.bk-slot.empty{color:var(--dim)}
+.bk-slot.empty .ph{font-size:14px; color:var(--dim); font-style:italic}
+.bk-slot .wtag{font-family:var(--ff-head); font-size:9.5px; letter-spacing:1px;
+  text-transform:uppercase; color:#0a130e; background:linear-gradient(180deg,var(--gold-lt),var(--gold));
+  border-radius:12px; padding:2px 7px}
+
+/* ---------- CHAMPION ---------- */
+.bk-champ{display:flex; flex-direction:column; align-items:center; gap:10px;
+  padding:26px 18px; border-radius:var(--radius);
+  background:
+    radial-gradient(320px 160px at 50% 0%, rgba(232,178,58,.22), transparent 70%),
+    linear-gradient(180deg,#1c2414,#0e1a11);
+  border:1px solid var(--gold-dp);
+  box-shadow:0 16px 44px rgba(232,178,58,.18); position:relative; z-index:1;
+  text-align:center}
+.bk-champ .cup{font-size:40px; filter:drop-shadow(0 6px 16px rgba(232,178,58,.45));
+  animation:cup 3.5s ease-in-out infinite}
+@keyframes cup{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-6px) rotate(-3deg)}}
+.bk-champ .lab{font-family:var(--ff-head); font-size:11px; letter-spacing:3px;
+  text-transform:uppercase; color:var(--gold-lt)}
+.bk-champ .nm{font-family:var(--ff-disp); font-size:26px; letter-spacing:1px; color:var(--bone)}
+.bk-champ .nm.won{color:var(--gold-lt); text-shadow:0 0 24px rgba(232,178,58,.5)}
+.bk-champ .tb{justify-content:center}
+.bk-champ.waiting{border-color:var(--line-2); box-shadow:var(--shadow)}
+.bk-champ.waiting .cup{animation:none; opacity:.35; filter:none}
+
+/* connecteurs SVG */
+.bk-link{fill:none; stroke:var(--line-2); stroke-width:2}
+.bk-link.won{stroke:var(--gold); stroke-width:2.5;
+  filter:drop-shadow(0 0 6px rgba(232,178,58,.35))}
+
+@media (max-width:640px){
+  .bk-stage{padding:20px 10px 24px}
+  .bk-grid{min-width:820px}
+  .bk-col{min-width:180px; padding:30px 14px 0}
+}

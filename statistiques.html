@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EF26 · Final Chapter — Statistiques</title>
+<meta name="description" content="Statistiques du tournoi eFootball EF26 Final Chapter : leader, meilleure attaque, meilleure défense, records et graphiques.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/stats.css">
+</head>
+<body>
+<div class="wrap">
+
+  <h2 class="sec"><span class="tick"></span>Tableau de bord</h2>
+  <div class="st-grid" id="st-cards"></div>
+
+  <h2 class="sec"><span class="tick"></span>Graphiques</h2>
+  <div class="st-charts">
+    <div class="card st-chart">
+      <div class="ch-title">Course au titre</div>
+      <div class="ch-sub">Top 10 aux points — le podium en or</div>
+      <canvas id="ch-points"></canvas>
+    </div>
+    <div class="card st-chart">
+      <div class="ch-title">Buts par journée</div>
+      <div class="ch-sub">Volume offensif de chaque journée</div>
+      <canvas id="ch-goals"></canvas>
+    </div>
+  </div>
+
+  <p class="hint" style="margin-top:12px">Tout se met à jour en direct au fil de la saisie des résultats.</p>
+
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/store.js"></script>
+<script src="js/logic.js"></script>
+<script src="js/components.js"></script>
+<script src="js/pages/stats.js"></script>
+</body>
+</html>

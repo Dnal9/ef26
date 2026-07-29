@@ -1,0 +1,55 @@
+/* ============================================================
+   EF26 · FINAL CHAPTER — css/tokens.css
+   Source unique de vérité du design. Tout le site pioche ici.
+   ============================================================ */
+:root{
+  /* --- Couleurs : nuit de stade, or de champion --- */
+  --bg:        #081310;
+  --bg-2:      #0b1a13;
+  --panel:     #102019;
+  --panel-2:   #0d1b14;
+  --line:      #20362b;
+  --line-2:    #2b4739;
+
+  --gold:      #e8b23a;
+  --gold-lt:   #f7da86;
+  --gold-dp:   #b8862a;
+  --teal:      #39e0b9;
+  --bone:      #edece3;
+  --muted:     #8fa79b;
+  --dim:       #6b7d73;
+
+  --green:     #31b07a;
+  --amber:     #d99a2b;
+  --red:       #c0554b;
+  --green-bg:  #123626;
+  --amber-bg:  #33280f;
+  --dim-bg:    #1a241f;
+
+  /* --- Typographie --- */
+  --ff-disp: "Anton", sans-serif;                                /* titres écran */
+  --ff-head: "Oswald", sans-serif;                               /* sous-titres, labels */
+  --ff-body: "Barlow Condensed","Segoe UI",system-ui,sans-serif; /* texte */
+
+  --fs-hero:  clamp(38px, 7vw, 64px);
+  --fs-h2:    20px;
+  --fs-body:  16px;
+  --fs-small: 14px;
+
+  /* --- Espacements --- */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px;
+
+  /* --- Rayons & ombres --- */
+  --radius:    14px;
+  --radius-sm: 9px;
+  --radius-xs: 6px;
+  --shadow:    0 10px 30px rgba(0,0,0,.35);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,.45);
+  --glow-gold: 0 0 14px rgba(232,178,58,.5);
+
+  /* --- Divers --- */
+  --nav-h: 58px;
+  --maxw:  1080px;
+  --ease:  cubic-bezier(.2,.8,.2,1);
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EF26 · Final Chapter — Éliminatoires</title>
+<meta name="description" content="Tableau final du tournoi eFootball EF26 Final Chapter : barrages, quarts de finale, demi-finales, finale et champion.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/bracket.css">
+</head>
+<body>
+<canvas id="bk-confetti" style="position:fixed;inset:0;pointer-events:none;z-index:40"></canvas>
+<div class="wrap">
+
+  <h2 class="sec"><span class="tick"></span>Tableau final</h2>
+  <p class="hint">Le tableau se remplit tout seul depuis le classement : les 4 premiers entrent en quarts, les équipes classées 5ᵉ à 12ᵉ passent par les barrages (5v12 · 6v11 · 7v10 · 8v9). Le croisement garantit que le mieux classé affronte le barragiste le moins bien classé.</p>
+
+  <div class="card bk-stage">
+    <div class="bk-grid" id="bk-grid"></div>
+    <svg class="bk-svg" id="bk-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+
+  <p class="hint" style="margin-top:12px">Les vainqueurs de chaque confrontation sont désignés par l'organisateur dans l'espace admin — le chemin doré suit leur progression jusqu'au sacre.</p>
+
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/store.js"></script>
+<script src="js/logic.js"></script>
+<script src="js/components.js"></script>
+<script src="js/pages/bracket.js"></script>
+</body>
+</html>

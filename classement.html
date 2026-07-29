@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EF26 · Final Chapter — Classement</title>
+<meta name="description" content="Classement du tournoi eFootball EF26 Final Chapter : positions, points, différence de buts, zones de qualification et podium.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/classement.css">
+</head>
+<body>
+<div class="wrap">
+
+  <h2 class="sec"><span class="tick"></span>Podium</h2>
+  <div class="podium" id="cl-podium"></div>
+
+  <h2 class="sec"><span class="tick"></span>Classement général</h2>
+  <div class="cl-toolbar">
+    <div class="cl-search">
+      <span class="ic">🔍</span>
+      <input id="cl-q" type="search" placeholder="Rechercher une équipe…" autocomplete="off">
+    </div>
+    <span class="cl-count" id="cl-count">20 équipes</span>
+  </div>
+
+  <div class="card cl"><div class="scroll-x">
+    <table>
+      <thead id="cl-head"></thead>
+      <tbody id="cl-body"></tbody>
+    </table>
+  </div></div>
+
+  <div class="legend">
+    <span><i class="dot" style="background:var(--green)"></i>1ᵉ–4ᵉ · qualifiés directs en quarts</span>
+    <span><i class="dot" style="background:var(--amber)"></i>5ᵉ–12ᵉ · barrages</span>
+    <span><i class="dot" style="background:var(--dim)"></i>13ᵉ–20ᵉ · éliminés</span>
+  </div>
+  <p class="hint" style="margin-top:10px">Départage : points, puis différence de buts, puis buts marqués. Clique sur un en-tête de colonne pour trier, ou sur une équipe pour ouvrir sa fiche.</p>
+
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/store.js"></script>
+<script src="js/logic.js"></script>
+<script src="js/components.js"></script>
+<script src="js/pages/classement.js"></script>
+</body>
+</html>

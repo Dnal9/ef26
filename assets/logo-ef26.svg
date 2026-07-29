@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f7da86"/><stop offset="1" stop-color="#b8862a"/></linearGradient></defs>
+  <path d="M50 4 L90 21 V55 C90 78 72 92 50 98 C28 92 10 78 10 55 V21 Z" fill="#0c1a12" stroke="url(#g)" stroke-width="4"/>
+  <text x="50" y="45" text-anchor="middle" font-family="Oswald,Arial,sans-serif" font-weight="700" font-size="27" fill="#edece3">EF</text>
+  <text x="50" y="78" text-anchor="middle" font-family="Oswald,Arial,sans-serif" font-weight="700" font-size="31" fill="url(#g)">26</text>
+</svg>

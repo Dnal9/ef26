@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EF26 — Démo du socle</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<div class="wrap">
+  <h2 class="sec"><span class="tick"></span>Démo — badges d'équipe (monogrammes SVG)</h2>
+  <div class="card" style="padding:16px;display:flex;gap:22px;flex-wrap:wrap" id="d-badges"></div>
+
+  <h2 class="sec"><span class="tick"></span>Démo — cartes de match</h2>
+  <div id="d-matches" style="display:grid;gap:10px"></div>
+
+  <h2 class="sec"><span class="tick"></span>Démo — cartes de statistiques</h2>
+  <div class="stats-grid" id="d-stats"></div>
+
+  <h2 class="sec"><span class="tick"></span>Démo — calendrier généré (journée 1)</h2>
+  <p class="hint" id="d-calinfo"></p>
+  <div id="d-cal" style="display:grid;gap:10px"></div>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/store.js"></script>
+<script src="js/logic.js"></script>
+<script src="js/components.js"></script>
+<script>
+  C.navbar("index.html");
+  C.loader();
+  Store.init();
+  var st = Store.get();
+
+  // pots + calendrier si absent (première visite)
+  if (!st.matches.length) {
+    Logic.assignPots(st.teams);
+    st.matches = Logic.generateCalendar(st.teams);
+    Store.save(true);
+  }
+  var byId = {}; st.teams.forEach(function (t) { byId[t.id] = t; });
+
+  // badges
+  U.$("d-badges").innerHTML =
+    C.teamBadge(byId[0], { size: "sm", link: false }) +
+    C.teamBadge(byId[1], { link: false }) +
+    C.teamBadge(byId[2], { size: "lg", link: false }) +
+    C.teamBadge(byId[7], { link: false }) +
+    C.teamBadge(byId[13], { link: false });
+
+  // cartes match : un terminé (factice) + un à venir
+  var demo = JSON.parse(JSON.stringify(st.matches[0]));
+  demo.scoreHome = 3; demo.scoreAway = 1; demo.status = "termine";
+  U.$("d-matches").innerHTML = C.matchCard(demo, byId, { link: false }) +
+                               C.matchCard(st.matches[1], byId, { link: false });
+
+  // stat cards
+  U.$("d-stats").innerHTML =
+    C.statCard({ ico: "👑", lab: "Leader", val: "12 pts", sub: "Équipe 1", gold: true }) +
+    C.statCard({ cls: "teal", ico: "⚽", lab: "Meilleure attaque", val: "14", sub: "Équipe 4" }) +
+    C.statCard({ cls: "green", ico: "🛡️", lab: "Meilleure défense", val: "2", sub: "Équipe 9" }) +
+    C.statCard({ ico: "🔄", lab: "Mise à jour", val: "", sub: U.fmtDateTime(st.meta.updatedAt) });
+
+  // journée 1
+  var j1 = st.matches.filter(function (m) { return m.journee === 1; });
+  U.$("d-calinfo").textContent = st.matches.length + " matchs générés · " + j1.length + " en journée 1 · chaque équipe joue 1 fois par journée et rencontre 1 adversaire de chaque pot.";
+  U.$("d-cal").innerHTML = j1.map(function (m) { return C.matchCard(m, byId, { small: true, link: false }); }).join("");
+</script>
+</body>
+</html>

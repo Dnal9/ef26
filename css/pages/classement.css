@@ -1,0 +1,54 @@
+/* ============================================================
+   EF26 — css/pages/classement.css : identité de la page Classement
+   ============================================================ */
+
+/* ---------- BARRE D'OUTILS ---------- */
+.cl-toolbar{display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:14px}
+.cl-search{position:relative; flex:1 1 220px; max-width:340px}
+.cl-search input{padding-left:36px; height:42px; font-size:16px}
+.cl-search .ic{position:absolute; left:12px; top:50%; transform:translateY(-50%);
+  color:var(--muted); font-size:15px; pointer-events:none}
+.cl-count{font-family:var(--ff-head); font-size:12px; letter-spacing:1px;
+  text-transform:uppercase; color:var(--muted)}
+
+/* ---------- TABLE ---------- */
+.cl table{min-width:760px}
+.cl thead th{cursor:pointer; user-select:none; white-space:nowrap; transition:color .15s}
+.cl thead th:hover{color:var(--bone)}
+.cl thead th.sorted{color:var(--gold)}
+.cl thead th .arr{font-size:9px; margin-left:4px; opacity:.9}
+.cl thead th.no-sort{cursor:default}
+.cl thead th.no-sort:hover{color:var(--muted)}
+
+.cl tbody tr{transition:background .15s; will-change:transform}
+.cl tbody tr:hover{background:#14261d}
+.cl td.pos{font-family:var(--ff-head); font-weight:700; width:46px; font-size:16px}
+.cl td.team{text-align:left; min-width:190px}
+.cl td.pts{font-family:var(--ff-head); font-weight:700; color:var(--gold); font-size:17px}
+.cl td.diff.plus{color:#7fe0b3}
+.cl td.diff.minus{color:#e89b93}
+
+/* zones (liseré gauche) */
+.cl .zone-q td:first-child{box-shadow:inset 4px 0 0 var(--green)}
+.cl .zone-b td:first-child{box-shadow:inset 4px 0 0 var(--amber)}
+.cl .zone-o{opacity:.6}
+.cl .zone-o td:first-child{box-shadow:inset 4px 0 0 var(--dim)}
+
+/* podium dans la table */
+.cl .p1 td{background:linear-gradient(90deg,rgba(255,216,90,.10),transparent 55%)}
+.cl .p2 td{background:linear-gradient(90deg,rgba(207,214,218,.08),transparent 55%)}
+.cl .p3 td{background:linear-gradient(90deg,rgba(213,155,102,.08),transparent 55%)}
+.cl .medal{margin-left:6px; font-size:13px}
+
+/* forme (5 derniers) */
+.cl .forme{display:inline-flex; gap:3px}
+.cl .forme i{width:16px; height:16px; border-radius:4px; font-style:normal;
+  font-family:var(--ff-head); font-size:10px; font-weight:600;
+  display:inline-flex; align-items:center; justify-content:center}
+.cl .forme .fG{background:var(--green-bg); color:#7fe0b3}
+.cl .forme .fN{background:var(--dim-bg); color:var(--muted)}
+.cl .forme .fP{background:#331512; color:#e89b93}
+
+@media (max-width:640px){
+  .cl-search{max-width:none}
+}

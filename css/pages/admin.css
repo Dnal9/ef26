@@ -1,0 +1,83 @@
+/* ============================================================
+   EF26 — css/pages/admin.css : identité de l'espace admin
+   ============================================================ */
+
+/* ---------- CONNEXION ---------- */
+.ad-login{max-width:390px; margin:12vh auto 0; padding:30px 26px}
+.ad-login h1{font-family:var(--ff-disp); font-size:36px; text-align:center; margin:0 0 4px}
+.ad-login h1 span{color:var(--gold)}
+.ad-login p{color:var(--muted); text-align:center; margin:0 0 20px; font-size:14px}
+.ad-login input{margin-bottom:12px; padding:12px; font-size:16px}
+.ad-login .btn{width:100%; justify-content:center}
+.ad-login .err{color:#e89b93; font-size:14px; text-align:center; min-height:20px; margin-top:8px}
+
+/* ---------- EN-TÊTE / ONGLETS ---------- */
+.ad-flag{display:inline-flex; align-items:center; gap:7px; font-family:var(--ff-head);
+  text-transform:uppercase; letter-spacing:1px; font-size:12px; color:var(--gold);
+  border:1px solid var(--gold-dp); border-radius:20px; padding:5px 12px; background:#1a1408}
+.ad-tabs{display:flex; gap:8px; flex-wrap:wrap; margin:20px 0 16px}
+.ad-tab{font-family:var(--ff-head); font-weight:600; letter-spacing:1px; text-transform:uppercase;
+  font-size:13px; padding:9px 16px; border-radius:22px; cursor:pointer;
+  border:1px solid var(--line-2); background:var(--panel); color:var(--muted);
+  transition:color .15s, transform .14s}
+.ad-tab:hover{color:var(--bone); transform:translateY(-1px)}
+.ad-tab.active{color:#0a130e; border-color:transparent;
+  background:linear-gradient(180deg,var(--gold-lt),var(--gold));
+  box-shadow:0 6px 18px rgba(232,178,58,.28)}
+
+/* ---------- ÉQUIPES ---------- */
+.ad-teams table{min-width:560px}
+.ad-teams .idx{color:var(--muted); width:30px; font-size:13px}
+.ad-teams input.pe{width:84px; text-align:center}
+.ad-teams .pot{font-family:var(--ff-head); font-size:12px; color:var(--muted); width:60px}
+
+/* ---------- MATCHS ---------- */
+.ad-mx{display:grid; gap:9px}
+.ad-m{display:grid; grid-template-columns:1fr auto 1fr auto; align-items:center; gap:10px;
+  padding:10px 14px; border:1px solid var(--line); border-radius:var(--radius-sm);
+  background:linear-gradient(180deg,var(--panel),var(--panel-2))}
+.ad-m .home{justify-self:end; text-align:right}
+.ad-m .home .tb{flex-direction:row-reverse}
+.ad-m .mid{display:flex; align-items:center; gap:7px}
+.ad-m .mid input{width:52px; text-align:center; font-family:var(--ff-head);
+  font-weight:600; font-size:17px; padding:7px 4px}
+.ad-m .mid .sep{color:var(--muted); font-family:var(--ff-head)}
+.ad-m .stt{font-family:var(--ff-head); font-size:10px; letter-spacing:1px;
+  text-transform:uppercase; padding:3px 9px; border-radius:20px; white-space:nowrap;
+  justify-self:end}
+.ad-m .stt.done{background:var(--green-bg); color:#7fe0b3}
+.ad-m .stt.next{background:var(--amber-bg); color:var(--gold)}
+@media (max-width:640px){
+  .ad-m{grid-template-columns:1fr auto 1fr; row-gap:6px}
+  .ad-m .stt{grid-column:1 / -1; justify-self:center}
+}
+
+/* ---------- ÉLIMINATOIRES ---------- */
+.ad-bk{display:grid; gap:16px}
+@media (min-width:760px){.ad-bk{grid-template-columns:1fr 1fr}}
+.ad-bk-round .rt{font-family:var(--ff-head); font-weight:600; text-transform:uppercase;
+  letter-spacing:2px; font-size:12.5px; color:var(--muted); margin:0 0 8px;
+  display:flex; align-items:center; gap:8px}
+.ad-bk-round .rt::before{content:""; width:7px; height:13px; background:var(--gold); border-radius:2px}
+.ad-tie{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius-sm);
+  overflow:hidden; margin-bottom:9px; position:relative}
+.ad-tie.decided{border-color:var(--gold-dp)}
+.ad-slot{display:flex; align-items:center; gap:9px; padding:10px 12px; cursor:pointer;
+  border-bottom:1px solid var(--line); font-size:15px; transition:background .13s}
+.ad-slot:last-of-type{border-bottom:none}
+.ad-slot:hover:not(.empty){background:#17291f}
+.ad-slot .seed{font-family:var(--ff-head); font-size:11px; color:var(--muted); min-width:16px}
+.ad-slot.win{background:linear-gradient(90deg,#1e3117,#17291b)}
+.ad-slot.win .tb-name{color:var(--gold); font-weight:600}
+.ad-slot.empty{color:var(--dim); cursor:default; font-style:italic; font-size:14px}
+.ad-tie .clear{position:absolute; top:6px; right:8px; z-index:2; width:22px; height:22px;
+  border-radius:50%; border:1px solid var(--line-2); background:var(--panel-2);
+  color:var(--muted); font-size:11px; cursor:pointer; line-height:1}
+.ad-tie .clear:hover{color:#e89b93; border-color:var(--red)}
+
+/* ---------- OUTILS ---------- */
+.ad-tools .card{padding:18px}
+.ad-tools h3{font-family:var(--ff-head); font-weight:600; text-transform:uppercase;
+  letter-spacing:1.5px; font-size:14px; margin:0 0 6px}
+.ad-tools p{color:var(--muted); font-size:14.5px; margin:0 0 12px}
+.ad-warn{border-color:#4a3320}

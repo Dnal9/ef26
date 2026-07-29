@@ -1,0 +1,22 @@
+/* ============================================================
+   EF26 — css/pages/stats.css : identité de la page Statistiques
+   ============================================================ */
+
+/* ---------- GRILLE DE CARTES ---------- */
+.st-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px}
+.st-grid .stat .val{font-size:27px}
+.st-grid .stat .tb{margin-top:4px}
+
+/* ---------- PANNEAUX GRAPHIQUES ---------- */
+.st-charts{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+@media (max-width:820px){.st-charts{grid-template-columns:1fr}}
+.st-chart{padding:16px 16px 10px}
+.st-chart .ch-title{
+  font-family:var(--ff-head); font-weight:600; text-transform:uppercase;
+  letter-spacing:2px; font-size:13px; color:var(--bone);
+  display:flex; align-items:center; gap:9px; margin-bottom:4px;
+}
+.st-chart .ch-title::before{content:""; width:7px; height:14px;
+  background:var(--gold); border-radius:2px}
+.st-chart .ch-sub{font-size:13px; color:var(--muted); margin-bottom:10px}
+.st-chart canvas{width:100%; height:300px; display:block}
