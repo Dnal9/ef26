@@ -5,44 +5,80 @@
   "use strict";
   var esc = U.esc;
 
-  /* ---------- palette des monogrammes (1 couleur stable par équipe) ---------- */
-  var COLORS = [
-    "#e8b23a", "#39e0b9", "#5aa7e8", "#e86a5a", "#a06ae8",
-    "#6ae87f", "#e85aa7", "#e8d75a", "#5ae8d7", "#e8935a",
-    "#7f8ce8", "#b0e85a", "#e85a5a", "#5ae88f", "#d75ae8",
-    "#e8b95a", "#5ac8e8", "#9fe85a", "#e87f5a", "#8f5ae8"
-  ];
+  /* ---------- couleur unique par équipe (générée depuis le nom, stable) ---------- */
+  function hashStr(s) {
+    var h = 0; s = String(s);
+    for (var i = 0; i < s.length; i++) { h = (h << 5) - h + s.charCodeAt(i); h |= 0; }
+    return Math.abs(h);
+  }
+  function hsl2hex(h, s, l) {
+    s /= 100; l /= 100;
+    var k = function (n) { return (n + h / 30) % 12; };
+    var a = s * Math.min(l, 1 - l);
+    var f = function (n) {
+      var c = l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+      return Math.round(255 * c).toString(16).padStart(2, "0");
+    };
+    return "#" + f(0) + f(8) + f(4);
+  }
+  /* deux tons (clair → foncé) pour le dégradé du blason */
+  function teamColors(team) {
+    var seed = hashStr(team.name || ("e" + team.id));
+    var hue = seed % 360;                    // teinte stable par nom
+    return { light: hsl2hex(hue, 62, 56), dark: hsl2hex(hue, 66, 30) };
+  }
   function initials(name) {
-    var parts = String(name).trim().split(/\s+/);
+    var parts = String(name).trim().split(/\s+/).filter(Boolean);
     var s = parts.length >= 2 ? parts[0][0] + parts[1][0] : String(name).slice(0, 2);
-    return s.toUpperCase();
+    return (s || "EF").toUpperCase();
   }
 
-  /* ---------- logo : monogramme SVG (ou image si team.logo fourni) ---------- */
+  /* ---------- logo : ÉCUSSON arrondi (dégradé + liseré or + brillance + étoile) ---------- */
   function logoSVG(team, size) {
     size = size || 28;
     if (team.logo) {
       return '<img class="tb-logo" src="' + esc(team.logo) + '" width="' + size + '" height="' + size +
-        '" alt="" style="border-radius:50%;object-fit:cover">';
+        '" alt="" style="object-fit:cover">';
     }
-    var c = COLORS[team.id % COLORS.length];
+    var col = teamColors(team);
+    var uid = "b" + team.id;
     var fs = Math.round(size * 0.40);
-    return '<svg class="tb-logo" width="' + size + '" height="' + size + '" viewBox="0 0 40 40" aria-hidden="true">' +
-      '<circle cx="20" cy="20" r="19" fill="#0c1a12" stroke="' + c + '" stroke-width="2.5"/>' +
-      '<circle cx="20" cy="20" r="13.5" fill="none" stroke="' + c + '" stroke-width="1" opacity=".35"/>' +
-      '<text x="20" y="21.5" text-anchor="middle" dominant-baseline="central" ' +
-      'font-family="Oswald,Arial,sans-serif" font-weight="700" font-size="' + fs + '" fill="' + c + '">' +
-      esc(initials(team.name)) + "</text></svg>";
+    var h = Math.round(size * 1.3); // écusson : plus haut que large
+    var crest = "M20 2 C33 2 38 9 38 21 C38 37 29 46 20 50 C11 46 2 37 2 21 C2 9 7 2 20 2 Z";
+    return '<svg class="tb-logo" width="' + size + '" height="' + h + '" viewBox="0 0 40 52" aria-hidden="true">' +
+      "<defs>" +
+        '<linearGradient id="g' + uid + '" x1="0" y1="0" x2="0" y2="1">' +
+          '<stop offset="0" stop-color="' + col.light + '"/><stop offset="1" stop-color="' + col.dark + '"/></linearGradient>' +
+        '<linearGradient id="s' + uid + '" x1="0" y1="0" x2="0" y2="1">' +
+          '<stop offset="0" stop-color="#ffffff" stop-opacity=".28"/><stop offset="0.55" stop-color="#ffffff" stop-opacity="0"/></linearGradient>' +
+      "</defs>" +
+      '<path d="' + crest + '" fill="url(#g' + uid + ')" stroke="#f7da86" stroke-width="2"/>' +
+      '<path d="' + crest + '" fill="url(#s' + uid + ')"/>' +
+      '<text x="20" y="23" text-anchor="middle" dominant-baseline="central" ' +
+        'font-family="Oswald,Arial,sans-serif" font-weight="700" font-size="' + fs + '" fill="#fff" ' +
+        'style="paint-order:stroke" stroke="rgba(0,0,0,.25)" stroke-width="0.6">' + esc(initials(team.name)) + "</text>" +
+      '<text x="20" y="42" text-anchor="middle" font-size="8" fill="#f7da86">★</text>' +
+      "</svg>";
   }
 
-  /* ---------- TeamBadge : logo + nom ---------- */
+  /* tag court d'équipe (3 lettres) pour le style "club" */
+  function teamTag(team) {
+    var parts = String(team.name).trim().toUpperCase().split(/\s+/).filter(Boolean);
+    if (parts.length >= 3) return (parts[0][0] + parts[1][0] + parts[2][0]);
+    if (parts.length === 2) return (parts[0].slice(0, 2) + parts[1][0]);
+    return parts[0] ? parts[0].slice(0, 3) : "EF2";
+  }
+
+  /* ---------- TeamBadge : écusson + nom soigné ---------- */
   function teamBadge(team, opts) {
     opts = opts || {};
-    var size = opts.size === "lg" ? 34 : opts.size === "sm" ? 22 : 28;
+    var size = opts.size === "lg" ? 40 : opts.size === "sm" ? 26 : 32;
     var cls = "tb" + (opts.size ? " " + opts.size : "");
-    var link = opts.link !== false;
-    var inner = logoSVG(team, size) + '<span class="tb-name">' + esc(team.name) + "</span>";
-    return link
+    var name = '<span class="tb-name">' + esc(team.name) + "</span>";
+    var sub = opts.sub ? '<span class="tb-sub">' + esc(opts.sub) + "</span>" : "";
+    var inner = logoSVG(team, size) +
+      (sub ? '<span class="tb-text">' + name + sub + "</span>" : name);
+    return opts.link !== false
       ? '<a class="' + cls + '" href="equipes.html#t' + team.id + '">' + inner + "</a>"
       : '<span class="' + cls + '">' + inner + "</span>";
   }
@@ -120,7 +156,7 @@
   }
 
   window.C = {
-    logoSVG: logoSVG, teamBadge: teamBadge, matchCard: matchCard,
-    statCard: statCard, navbar: navbar, loader: loader
+    logoSVG: logoSVG, teamBadge: teamBadge, teamTag: teamTag, teamColors: teamColors,
+    matchCard: matchCard, statCard: statCard, navbar: navbar, loader: loader
   };
 })();

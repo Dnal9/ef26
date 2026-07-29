@@ -22,7 +22,11 @@
 .eq-head{display:flex; align-items:center; gap:12px; padding:14px 16px;
   border-bottom:1px solid var(--line);
   background:linear-gradient(90deg,#14261c,transparent)}
-.eq-head .tb-name{font-family:var(--ff-head); font-size:17px; font-weight:600}
+.eq-head .eq-id{display:flex; flex-direction:column; min-width:0; line-height:1.1}
+.eq-head .tb-name{font-family:var(--ff-head); font-size:17px; font-weight:600;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.eq-head .eq-tag{font-family:var(--ff-head); font-size:10.5px; letter-spacing:2px;
+  text-transform:uppercase; color:var(--gold); margin-top:1px}
 .eq-head .eq-rank{margin-left:auto; text-align:right}
 .eq-head .eq-rank .r{font-family:var(--ff-disp); font-size:22px; line-height:1}
 .eq-head .eq-rank .r.z-q{color:#e8c977}

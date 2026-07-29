@@ -50,7 +50,8 @@
 
     return '<article class="card eq" id="t' + t.id + '">' +
       '<div class="eq-head">' + C.logoSVG(t, 40) +
-        '<span class="tb-name">' + U.esc(t.name) + "</span>" +
+        '<span class="eq-id"><span class="tb-name">' + U.esc(t.name) + "</span>" +
+        '<span class="eq-tag">' + C.teamTag(t) + "</span></span>" +
         '<span class="eq-rank"><div class="r z-' + zone + '">' + (rank + 1) + "ᵉ</div>" +
         '<div class="pot">Pot ' + t.pot + " · " + zlab + "</div></span></div>" +
       '<div class="eq-stats">' +
