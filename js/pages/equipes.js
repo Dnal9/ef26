@@ -84,7 +84,7 @@
     U.$("eq-grid").innerHTML = list.map(function (t) {
       return cardHTML(t, rowOf[t.id], rankOf[t.id], byId, s.matches);
     }).join("");
-    U.$("eq-count").textContent = query ? list.length + " / 20 équipes" : "20 équipes";
+    U.$("eq-count").textContent = query ? list.length + " / 28 équipes" : "28 équipes";
   }
 
   U.$("eq-q").addEventListener("input", function (e) {

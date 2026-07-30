@@ -100,7 +100,7 @@
   /* graphe 2 : buts par journée (barres verticales) */
   function chartGoals(s) {
     var cv = U.$("ch-goals"); var p = prep(cv), ctx = p.ctx;
-    var goals = [0, 0, 0, 0, 0], counts = [0, 0, 0, 0, 0];
+    var goals = [0,0,0,0,0,0,0], counts = [0,0,0,0,0,0,0];
     s.matches.forEach(function (m) {
       if (m.status !== "termine") return;
       goals[m.journee - 1] += m.scoreHome + m.scoreAway;
@@ -108,7 +108,7 @@
     });
     var max = Math.max(5, Math.max.apply(null, goals));
     var padL = 34, padB = 30, padT = 12;
-    var iw = (p.w - padL - 16) / 5;
+    var iw = (p.w - padL - 16) / 7;
 
     /* grille + axe Y */
     ctx.font = CH.fontS; ctx.textAlign = "right"; ctx.textBaseline = "middle";
@@ -121,8 +121,8 @@
       ctx.fillStyle = CH.label; ctx.fillText(String(v), padL - 8, y);
     }
 
-    for (var j = 0; j < 5; j++) {
-      var bw = Math.min(46, iw * 0.5);
+    for (var j = 0; j < 7; j++) {
+      var bw = Math.min(40, iw * 0.55);
       var x = padL + iw * j + (iw - bw) / 2;
       var bh = (p.h - padB - padT) * (goals[j] / max);
       var y0 = p.h - padB - bh;

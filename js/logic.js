@@ -5,23 +5,24 @@
 (function () {
   "use strict";
 
-  /* ---------- pots : 5 pots de 4 selon la PE ---------- */
+  /* ---------- pots : 7 pots de 4 selon la PE (28 équipes) ---------- */
   function assignPots(teams) {
     var byPe = teams.slice().sort(function (a, b) { return b.pe - a.pe || a.id - b.id; });
     byPe.forEach(function (t, i) { t.pot = Math.floor(i / 4) + 1; });
     return teams;
   }
 
-  /* ---------- calendrier : 1 adversaire par pot, 5 journées ----------
-     50 matchs : 10 intra-pots (2 par pot) + 40 inter-pots (4 par paire).
-     Construction "méthode du cercle" sur les 5 pots — correcte par
-     construction : à la journée r, le pot r joue en interne (2 matchs)
-     et les pots i,j avec i+j ≡ 2r (mod 5) s'affrontent (couplage 4v4).
-     Chaque équipe joue donc exactement 1 fois par journée et rencontre
-     exactement 1 adversaire de chaque pot (le sien inclus).           */
+  /* ---------- calendrier : 1 adversaire de chaque AUTRE pot ----------
+     28 équipes, 7 pots de 4. Chaque équipe joue 6 matchs (un contre un
+     adversaire de chacun des 6 autres pots), répartis sur 7 journées :
+     à la journée r, le pot r se repose, et les 6 autres pots se couplent
+     via la méthode du cercle (paires {i,j} avec i+j ≡ 2r mod 7).
+     → 12 matchs par journée · 84 au total · chaque équipe se repose 1 fois
+     et rencontre exactement 1 adversaire de chaque autre pot.          */
   function generateCalendar(teams) {
-    var pots = [[], [], [], [], []];
-    teams.forEach(function (t) { pots[t.pot - 1].push(t.id); });
+    var NP = 7;
+    var pots = []; for (var p = 0; p < NP; p++) pots.push([]);
+    teams.forEach(function (t) { if (pots[t.pot - 1]) pots[t.pot - 1].push(t.id); });
 
     function shuffle(a) {
       a = a.slice();
@@ -31,20 +32,19 @@
       return a;
     }
 
-    var rounds = [[], [], [], [], []];
-    for (var r = 0; r < 5; r++) {
-      // intra-pot : le pot r se joue en interne (2 matchs)
-      var s = shuffle(pots[r]);
-      rounds[r].push([s[0], s[1]], [s[2], s[3]]);
-      // inter-pots : paires {i,j}, i<j, i+j ≡ 2r (mod 5)
-      for (var i = 0; i < 5; i++) {
-        for (var j = i + 1; j < 5; j++) {
-          if ((i + j) % 5 === (2 * r) % 5) {
-            var A = pots[i], B = shuffle(pots[j]); // permutation aléatoire = tirage
-            for (var k = 0; k < 4; k++) rounds[r].push([A[k], B[k]]);
+    var rounds = [];
+    for (var r = 0; r < NP; r++) {
+      var round = [];
+      for (var i = 0; i < NP; i++) {
+        for (var j = i + 1; j < NP; j++) {
+          if (i === r || j === r) continue;            // le pot r se repose
+          if ((i + j) % NP === (2 * r) % NP) {          // couplage méthode du cercle
+            var A = pots[i], B = shuffle(pots[j]);       // tirage aléatoire des oppositions
+            for (var k = 0; k < 4; k++) round.push([A[k], B[k]]);
           }
         }
       }
+      rounds.push(round);
     }
 
     var matches = [], id = 0;

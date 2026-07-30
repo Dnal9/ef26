@@ -72,7 +72,7 @@
     var s = Store.get();
     var byId = {}; s.teams.forEach(function (t) { byId[t.id] = t; });
     var chips = "";
-    for (var j = 1; j <= 5; j++) {
+    for (var j = 1; j <= 7; j++) {
       var dj = s.matches.filter(function (m) { return m.journee === j; });
       var dd = dj.filter(function (m) { return m.status === "termine"; }).length;
       chips += '<button class="mx-tab' + (day === j ? " active" : "") + '" data-day="' + j + '">J' + j +
@@ -193,7 +193,7 @@
     host.innerHTML =
       '<div class="ad-tools" style="display:grid;gap:14px">' +
       '<div class="card ad-warn"><h3>♻️ Régénérer le calendrier</h3>' +
-      '<p>Refait les pots selon les PE actuelles et retire un nouveau calendrier de 50 matchs. <b>Efface tous les scores saisis et les décisions du tableau final.</b></p>' +
+      '<p>Refait les pots selon les PE actuelles et retire un nouveau calendrier de 84 matchs. <b>Efface tous les scores saisis et les décisions du tableau final.</b></p>' +
       '<button class="btn" id="ad-regen">Régénérer</button></div>' +
       '<div class="card ad-warn"><h3>🗑️ Réinitialiser le tournoi</h3>' +
       '<p>Remet tout à zéro : équipes par défaut, aucun score, tableau vide.</p>' +

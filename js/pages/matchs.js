@@ -33,7 +33,7 @@
 
     /* onglets journées (avec progression x/10) */
     var tabs = '<button class="mx-tab' + (day === 0 ? " active" : "") + '" data-day="0">Toutes</button>';
-    for (var j = 1; j <= 5; j++) {
+    for (var j = 1; j <= 7; j++) {
       var dj = s.matches.filter(function (m) { return m.journee === j; });
       var dd = dj.filter(function (m) { return m.status === "termine"; }).length;
       tabs += '<button class="mx-tab' + (day === j ? " active" : "") + '" data-day="' + j + '">J' + j +

@@ -31,7 +31,7 @@
   /* ---------- schema par defaut ---------- */
   function defaultState() {
     var teams = [];
-    for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < 28; i++) {
       teams.push({
         id: i, name: "Equipe " + (i + 1), logo: "",
         pe: 3000, pot: Math.floor(i / 4) + 1
@@ -47,7 +47,7 @@
   function readCache() {
     try {
       var v = localStorage.getItem(CACHE);
-      if (v) { var s = JSON.parse(v); if (s && s.teams && s.teams.length === 20) return s; }
+      if (v) { var s = JSON.parse(v); if (s && s.teams && s.teams.length === 28) return s; }
     } catch (e) {}
     return null;
   }

@@ -126,7 +126,7 @@
       tb.appendChild(tr); // réordonne
     });
 
-    U.$("cl-count").textContent = query ? visible + " / 20 équipes" : "20 équipes";
+    U.$("cl-count").textContent = query ? visible + " / 28 équipes" : "28 équipes";
 
     /* FLIP : animer le déplacement */
     if (animate) o.list.forEach(function (r) {
