@@ -10,11 +10,6 @@
   Store.init();
 
   var st = Store.get();
-  if (!st.matches.length) {
-    Logic.assignPots(st.teams);
-    st.matches = Logic.generateCalendar(st.teams);
-    Store.save(true);
-  }
 
   /* ---------- état local ---------- */
   var day = 0;        // 0 = toutes les journées, sinon 1..5

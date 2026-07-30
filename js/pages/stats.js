@@ -10,11 +10,6 @@
   Store.init();
 
   var st = Store.get();
-  if (!st.matches.length) {
-    Logic.assignPots(st.teams);
-    st.matches = Logic.generateCalendar(st.teams);
-    Store.save(true);
-  }
 
   /* ---------- palette des graphes ---------- */
   var CH = {

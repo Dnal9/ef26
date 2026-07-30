@@ -40,11 +40,6 @@
     U.$("ad-panel").style.display = "";
     Store.init();
     var st = Store.get();
-    if (!st.matches.length) {
-      Logic.assignPots(st.teams);
-      st.matches = Logic.generateCalendar(st.teams);
-      Store.save(true);
-    }
     U.$("ad-tabs").addEventListener("click", function (e) {
       var b = e.target.closest(".ad-tab"); if (!b) return;
       tab = b.dataset.t; renderTabs(); renderSection();

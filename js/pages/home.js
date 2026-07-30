@@ -10,11 +10,6 @@
 
   // première visite : pots + calendrier
   var st = Store.get();
-  if (!st.matches.length) {
-    Logic.assignPots(st.teams);
-    st.matches = Logic.generateCalendar(st.teams);
-    Store.save(true);
-  }
 
   function render(s) {
     var byId = {}; s.teams.forEach(function (t) { byId[t.id] = t; });
