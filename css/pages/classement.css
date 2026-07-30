@@ -52,3 +52,15 @@
 @media (max-width:640px){
   .cl-search{max-width:none}
 }
+
+/* ---------- PROBABILITÉS (masquées par défaut) ---------- */
+.cl-odds-btn{margin-left:auto}
+.cl-odds-btn.on{border-color:var(--gold); color:var(--gold)}
+.cl-odds-note{margin:10px 2px 0; font-size:13.5px; line-height:1.4}
+.cl .odds-col{display:none}                 /* cachées par défaut */
+.cl.show-odds .odds-col{display:table-cell}  /* révélées au clic */
+.cl .odds-cell{display:flex; flex-direction:column; align-items:center; gap:3px; min-width:60px}
+.cl .odds-cell .ov{font-family:var(--ff-head); font-weight:700; font-size:14px}
+.cl .odds-cell .ob{width:52px; height:4px; border-radius:3px; background:var(--dim-bg); overflow:hidden}
+.cl .odds-cell .ob b{display:block; height:100%; border-radius:3px}
+.cl.show-odds table{min-width:920px}

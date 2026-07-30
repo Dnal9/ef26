@@ -113,6 +113,67 @@
     };
   }
 
+  /* ---------- probabilités de qualification (Monte-Carlo) ----------
+     Rejoue N fois les matchs restants, pondérés par la force des équipes
+     (PE + points déjà pris), et compte la fréquence d'arrivée en
+     top 4 (quarts directs) et top 12 (quarts + barrages).
+     Résultat : estimation, pas une certitude.                         */
+  function qualificationOdds(teams, matches, opts) {
+    opts = opts || {};
+    var N = opts.runs || 3000;
+    var byId = {}; teams.forEach(function (t) { byId[t.id] = t; });
+
+    var baseTable = computeTable(teams, matches);
+    var ptsById = {}; baseTable.forEach(function (r) { ptsById[r.id] = r.pts; });
+    var pes = teams.map(function (t) { return t.pe || 3000; });
+    var peMin = Math.min.apply(null, pes), peMax = Math.max.apply(null, pes);
+    var peSpan = (peMax - peMin) || 1;
+    function strength(id) {
+      var t = byId[id];
+      var peN = ((t.pe || 3000) - peMin) / peSpan;
+      return 0.6 + peN * 1.1 + (ptsById[id] || 0) * 0.04;
+    }
+
+    var rest = matches.filter(function (m) { return m.status !== "termine"; });
+
+    var start = {};
+    baseTable.forEach(function (r) { start[r.id] = { pts: r.pts, diff: r.diff, bp: r.bp }; });
+
+    var top4 = {}, top12 = {};
+    teams.forEach(function (t) { top4[t.id] = 0; top12[t.id] = 0; });
+
+    for (var n = 0; n < N; n++) {
+      var acc = {};
+      teams.forEach(function (t) { acc[t.id] = { id: t.id, pts: start[t.id].pts, diff: start[t.id].diff, bp: start[t.id].bp }; });
+
+      for (var i = 0; i < rest.length; i++) {
+        var m = rest[i], sh = strength(m.homeId), sa = strength(m.awayId);
+        var pHome = sh / (sh + sa), pDraw = 0.26;
+        var rr = Math.random(), h = acc[m.homeId], a = acc[m.awayId];
+        if (rr < pHome * (1 - pDraw)) { h.pts += 3; h.diff += 1; h.bp += 1; }
+        else if (rr < pHome * (1 - pDraw) + pDraw) { h.pts += 1; a.pts += 1; }
+        else { a.pts += 3; a.diff += 1; a.bp += 1; }
+      }
+
+      var arr = teams.map(function (t) { return acc[t.id]; });
+      arr.sort(function (x, y) { return y.pts - x.pts || y.diff - x.diff || y.bp - x.bp || x.id - y.id; });
+      for (var k = 0; k < arr.length; k++) {
+        if (k < 4) top4[arr[k].id]++;
+        if (k < 12) top12[arr[k].id]++;
+      }
+    }
+
+    var out = {};
+    teams.forEach(function (t) {
+      out[t.id] = {
+        direct: Math.round(top4[t.id] / N * 100),
+        qualif: Math.round(top12[t.id] / N * 100),
+        runs: N
+      };
+    });
+    return out;
+  }
+
   /* ---------- matchs utiles ---------- */
   function nextMatch(matches) {
     var up = matches.filter(function (m) { return m.status === "a_venir"; });
@@ -156,6 +217,6 @@
     assignPots: assignPots, generateCalendar: generateCalendar,
     computeTable: computeTable, sortTable: sortTable, zone: zone,
     summary: summary, nextMatch: nextMatch, lastResult: lastResult,
-    teamMatches: teamMatches, bracket: bracket
+    teamMatches: teamMatches, bracket: bracket, qualificationOdds: qualificationOdds
   };
 })();

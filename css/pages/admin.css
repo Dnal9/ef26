@@ -81,3 +81,16 @@
   letter-spacing:1.5px; font-size:14px; margin:0 0 6px}
 .ad-tools p{color:var(--muted); font-size:14.5px; margin:0 0 12px}
 .ad-warn{border-color:#4a3320}
+
+/* ---------- EXPORT ---------- */
+.ad-export{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px}
+.ad-xcard{background:linear-gradient(180deg,var(--panel),var(--panel-2));
+  border:1px solid var(--line); border-radius:var(--radius-sm); padding:16px;
+  display:flex; flex-direction:column; gap:12px}
+.ad-xtop{display:flex; align-items:center; gap:12px}
+.ad-xico{font-size:26px}
+.ad-xtitle{font-family:var(--ff-head); font-weight:600; text-transform:uppercase;
+  letter-spacing:1px; font-size:15px}
+.ad-xdesc{font-size:13.5px; color:var(--muted)}
+.ad-xbtns{display:flex; gap:8px}
+.ad-xbtns .btn{flex:1; justify-content:center}

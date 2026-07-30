@@ -1,0 +1,82 @@
+/* ============================================================
+   EF26 — css/pages/export.css : feuilles d'export (PNG/PDF)
+   La feuille est rendue hors écran puis capturée.
+   ============================================================ */
+.xsheet{
+  position:fixed; left:-10000px; top:0; z-index:-1;
+  background:
+    radial-gradient(600px 240px at 50% -10%, rgba(232,178,58,.14), transparent 60%),
+    linear-gradient(180deg,#141311,#0c0c0d);
+  color:#f2f0ea; font-family:"Barlow Condensed",sans-serif;
+  padding:26px 28px 20px; border:1px solid #2a2823; border-radius:16px;
+  box-sizing:border-box;
+}
+.xsheet .xhead{display:flex; align-items:center; gap:14px; padding-bottom:14px;
+  border-bottom:2px solid #e8b23a; margin-bottom:18px}
+.xsheet .xkick{font-family:"Oswald",sans-serif; text-transform:uppercase; letter-spacing:4px;
+  font-size:11px; color:#9a968a}
+.xsheet .xh1{font-family:"Anton",sans-serif; font-size:30px; line-height:1; color:#f2f0ea; margin-top:3px}
+.xsheet .xdate{margin-left:auto; font-family:"Oswald",sans-serif; font-size:13px;
+  letter-spacing:1px; color:#e8b23a; text-transform:uppercase}
+.xsheet .xfoot{margin-top:18px; padding-top:12px; border-top:1px solid #2a2823;
+  text-align:center; font-family:"Oswald",sans-serif; font-size:11px; letter-spacing:2px;
+  text-transform:uppercase; color:#6a665c}
+
+/* ---- classement ---- */
+.xt{width:100%; border-collapse:collapse}
+.xt th{font-family:"Oswald",sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:1px;
+  font-size:11px; color:#9a968a; padding:8px 8px; border-bottom:1px solid #2a2823; text-align:center}
+.xt td{padding:8px 8px; text-align:center; font-size:15px; border-bottom:1px solid #201f1b}
+.xt td.pos{font-family:"Oswald",sans-serif; font-weight:700; width:52px}
+.xt td.tm{text-align:left; display:flex; align-items:center; gap:8px; font-weight:500; white-space:nowrap}
+.xt td.pts{font-family:"Oswald",sans-serif; font-weight:700; color:#e8b23a; font-size:16px}
+.xlegend{margin-top:12px; font-size:13px; color:#9a968a; text-align:center; letter-spacing:.3px}
+
+/* ---- pots ---- */
+.xp-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:10px}
+.xp-col{background:#141413; border:1px solid #2a2823; border-radius:10px; overflow:hidden}
+.xp-h{font-family:"Oswald",sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:1px;
+  font-size:12px; color:#0c0c0d; background:linear-gradient(180deg,#f7da86,#e8b23a);
+  padding:7px 8px; text-align:center}
+.xp-row{display:flex; align-items:center; gap:6px; padding:7px 8px; border-bottom:1px solid #201f1b; font-size:13px}
+.xp-row:last-child{border-bottom:none}
+.xp-n{flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.xp-pe{font-family:"Oswald",sans-serif; font-size:11px; color:#9a968a}
+
+/* ---- stats ---- */
+.xs-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
+.xs-card{background:#141413; border:1px solid #2a2823; border-radius:10px; padding:14px 14px;
+  border-left:3px solid #e8b23a}
+.xs-ico{font-size:20px}
+.xs-lab{font-family:"Oswald",sans-serif; text-transform:uppercase; letter-spacing:1px; font-size:11px;
+  color:#9a968a; margin-top:6px}
+.xs-val{font-family:"Anton",sans-serif; font-size:26px; color:#e8b23a; margin-top:2px}
+.xs-sub{font-size:13px; color:#9a968a; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+
+/* ---- matchs ---- */
+.xm-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+.xm-day{background:#141413; border:1px solid #2a2823; border-radius:10px; overflow:hidden}
+.xm-dh{font-family:"Oswald",sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:1px;
+  font-size:12px; color:#e8b23a; padding:7px 10px; border-bottom:1px solid #2a2823; background:#181713}
+.xm-row{display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:8px;
+  padding:6px 10px; border-bottom:1px solid #201f1b; font-size:13.5px}
+.xm-row:last-child{border-bottom:none}
+.xm-h{text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.xm-a{text-align:left; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.xm-s{font-family:"Oswald",sans-serif; font-weight:600; color:#6a665c; min-width:56px; text-align:center}
+.xm-s.d{color:#e8b23a}
+
+/* ---- bracket ---- */
+.xb-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; align-items:start}
+.xb-col{display:flex; flex-direction:column; gap:12px}
+.xb-h{font-family:"Oswald",sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:1px;
+  font-size:12px; color:#9a968a; text-align:center}
+.xb-tie{background:#141413; border:1px solid #2a2823; border-radius:9px; overflow:hidden}
+.xb-slot{display:flex; align-items:center; gap:8px; padding:9px 10px; font-size:14px;
+  border-bottom:1px solid #201f1b}
+.xb-slot:last-child{border-bottom:none}
+.xb-slot.w{background:#241d0c} .xb-slot.w{color:#e8b23a; font-weight:600}
+.xb-seed{font-family:"Oswald",sans-serif; font-size:10px; color:#9a968a; min-width:16px}
+.xb-champ{margin-top:6px; text-align:center; font-family:"Oswald",sans-serif; font-weight:700;
+  font-size:16px; color:#0c0c0d; background:linear-gradient(180deg,#f7da86,#e8b23a);
+  border-radius:9px; padding:12px 8px}

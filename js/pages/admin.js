@@ -53,7 +53,7 @@
   }
 
   function renderTabs() {
-    var T = [["matchs", "⚽ Scores"], ["equipes", "🛡️ Équipes"], ["bracket", "⚔️ Éliminatoires"], ["outils", "⚙️ Outils"]];
+    var T = [["matchs", "⚽ Scores"], ["equipes", "🛡️ Équipes"], ["bracket", "⚔️ Éliminatoires"], ["export", "📤 Export"], ["outils", "⚙️ Outils"]];
     U.$("ad-tabs").innerHTML = T.map(function (t) {
       return '<button class="ad-tab' + (tab === t[0] ? " active" : "") + '" data-t="' + t[0] + '">' + t[1] + "</button>";
     }).join("");
@@ -64,7 +64,36 @@
     if (tab === "matchs") renderMatchs(host);
     else if (tab === "equipes") renderEquipes(host);
     else if (tab === "bracket") renderBracket(host);
+    else if (tab === "export") renderExport(host);
     else renderOutils(host);
+  }
+
+  /* ============ EXPORT ============ */
+  function renderExport(host) {
+    var items = [
+      ["classement", "🏆", "Classement", "Le tableau complet avec zones et podium"],
+      ["pots", "🎯", "Les 7 pots", "La répartition des 28 équipes par PE"],
+      ["stats", "📊", "Statistiques", "Les 8 cartes de records"],
+      ["matchs", "📅", "Calendrier", "Les 7 journées et leurs scores"],
+      ["bracket", "⚔️", "Tableau final", "Barrages, quarts, demies, finale"]
+    ];
+    host.innerHTML =
+      '<p class="hint">Génère une image (PNG, idéale pour WhatsApp) ou un PDF propre — avec titre, date et logo. Le téléchargement part dans tes fichiers ; sur Android tu le retrouves dans « Téléchargements » et tu peux le partager directement.</p>' +
+      '<div class="ad-export">' + items.map(function (it) {
+        return '<div class="ad-xcard"><div class="ad-xtop"><span class="ad-xico">' + it[1] + '</span>' +
+          '<div><div class="ad-xtitle">' + it[2] + '</div><div class="ad-xdesc">' + it[3] + '</div></div></div>' +
+          '<div class="ad-xbtns">' +
+          '<button class="btn" data-x="png" data-view="' + it[0] + '">🖼️ PNG</button>' +
+          '<button class="btn" data-x="pdf" data-view="' + it[0] + '">📄 PDF</button>' +
+          '</div></div>';
+      }).join("") + '</div>' +
+      '<p class="note">💡 Astuce : le PNG est parfait pour poster dans le groupe WhatsApp. Le PDF est mieux pour imprimer ou archiver.</p>';
+
+    host.querySelector(".ad-export").addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-x]"); if (!b) return;
+      var view = b.dataset.view;
+      if (b.dataset.x === "png") EX.png(view); else EX.pdf(view);
+    });
   }
 
   /* ============ SCORES ============ */

@@ -32,8 +32,12 @@
     { key: "bc",   label: "BC" },
     { key: "diff", label: "Diff",    cls: "diff" },
     { key: "pts",  label: "Pts",     cls: "pts" },
-    { key: "forme", label: "Forme",  noSort: true }
+    { key: "forme", label: "Forme",  noSort: true },
+    { key: "direct", label: "Quarts %", noSort: true, odds: true },
+    { key: "qualif", label: "Qualif %", noSort: true, odds: true }
   ];
+  var showOdds = false;   // masqué par défaut
+  var oddsData = null;
   var DESC_FIRST = { j:1, g:1, bp:1, diff:1, pts:1, n:1, p:1, bc:1 }; // colonnes chiffrées : desc d'abord
 
   /* ---------- construction du DOM (1 tr par équipe, réutilisé) ---------- */
@@ -46,7 +50,8 @@
         '<td class="pos"></td><td class="team l"></td><td class="c-j"></td>' +
         '<td class="c-g"></td><td class="c-n"></td><td class="c-p"></td>' +
         '<td class="c-bp"></td><td class="c-bc"></td><td class="diff"></td>' +
-        '<td class="pts"></td><td class="c-f"></td>';
+        '<td class="pts"></td><td class="c-f"></td>' +
+        '<td class="c-od odds-col"></td><td class="c-oq odds-col"></td>';
       tb.appendChild(tr); rowMap[t.id] = tr;
     });
   }
@@ -56,7 +61,7 @@
       var sorted = c.key === sortCol;
       var arr = sorted ? '<span class="arr">' + (sortDir === 1 ? "▲" : "▼") + "</span>" : "";
       return '<th data-col="' + c.key + '" class="' + (c.cls || "") +
-        (c.noSort ? " no-sort" : "") + (sorted ? " sorted" : "") + '">' + c.label + arr + "</th>";
+        (c.noSort ? " no-sort" : "") + (c.odds ? " odds-col" : "") + (sorted ? " sorted" : "") + '">' + c.label + arr + "</th>";
     }).join("") + "</tr>";
   }
 
@@ -119,6 +124,12 @@
       tr.children[8].className = "diff" + (r.diff > 0 ? " plus" : r.diff < 0 ? " minus" : "");
       tr.children[9].textContent = r.pts;
       tr.children[10].innerHTML = r.forme.length ? formeHTML(r.forme) : '<span style="color:var(--dim)">—</span>';
+      if (showOdds && oddsData && oddsData[r.id]) {
+        tr.children[11].innerHTML = oddsCell(oddsData[r.id].direct, "d");
+        tr.children[12].innerHTML = oddsCell(oddsData[r.id].qualif, "q");
+      } else {
+        tr.children[11].innerHTML = ""; tr.children[12].innerHTML = "";
+      }
 
       var match = !query || t.name.toLowerCase().indexOf(query) !== -1;
       tr.style.display = match ? "" : "none";
@@ -175,10 +186,51 @@
     render(Store.get(), false);
   });
 
+  function oddsCell(pct, kind) {
+    var col = kind === "d" ? "var(--gold)" : "var(--teal)";
+    var txt = pct >= 100 ? "✓" : pct <= 0 ? "—" : pct + "%";
+    return '<div class="odds-cell"><span class="ov" style="color:' + (pct <= 0 ? "var(--dim)" : col) + '">' + txt + "</span>" +
+      '<i class="ob"><b style="width:' + Math.max(0, Math.min(100, pct)) + '%;background:' + col + '"></b></i></div>';
+  }
+
+  function computeOdds() {
+    var s = Store.get();
+    oddsData = Logic.qualificationOdds(s.teams, s.matches, { runs: 3000 });
+  }
+
+  function toggleOdds() {
+    showOdds = !showOdds;
+    var btn = U.$("cl-odds");
+    var tbl = document.querySelector(".cl");
+    if (showOdds) {
+      U.toast("Calcul des probabilités…");
+      // léger différé pour laisser le toast s'afficher
+      setTimeout(function () {
+        computeOdds();
+        tbl.classList.add("show-odds");
+        btn.classList.add("on");
+        btn.innerHTML = "🎲 Masquer les probabilités";
+        U.$("cl-odds-note").style.display = "";
+        buildHead(); render(Store.get(), false);
+      }, 30);
+    } else {
+      tbl.classList.remove("show-odds");
+      btn.classList.remove("on");
+      btn.innerHTML = "🎲 Probabilités de qualification";
+      U.$("cl-odds-note").style.display = "none";
+      buildHead(); render(Store.get(), false);
+    }
+  }
+
   /* ---------- init ---------- */
   buildHead();
   buildRows();
+  U.$("cl-odds").addEventListener("click", toggleOdds);
+
   render(Store.get(), false);
   renderPodium(Store.get());
-  Store.onChange(function (s) { render(s, true); renderPodium(s); });
+  Store.onChange(function (s) {
+    if (showOdds) computeOdds();   // les probas s'ajustent au fil des matchs
+    render(s, true); renderPodium(s);
+  });
 })();
