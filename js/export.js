@@ -8,6 +8,20 @@
   "use strict";
   var esc = U.esc;
 
+  function exInitials(name){
+    var p=String(name).trim().split(/\s+/).filter(Boolean);
+    var v=p.length>=2 ? p[0][0]+p[1][0] : String(name).slice(0,2);
+    return (v||"EF").toUpperCase();
+  }
+  function exBadge(team, size){
+    size = size||22;
+    var c = C.teamColors(team);
+    return '<span class="xl-logo" style="width:'+size+'px;height:'+size+'px;line-height:'+size+'px;'+
+      'font-size:'+Math.round(size*0.42)+'px;background:linear-gradient(180deg,'+c.light+','+c.dark+')">'+
+      esc(exInitials(team.name))+'</span>';
+  }
+
+
   /* ---------- helpers de contenu ---------- */
   function medalRows(s) {
     var ranked = Logic.sortTable(Logic.computeTable(s.teams, s.matches));
@@ -22,7 +36,7 @@
       var zc = z === "q" ? "#d0a83e" : z === "b" ? "#c98a2b" : "#6a665c";
       return '<tr>' +
         '<td class="pos" style="border-left:4px solid ' + zc + '">' + (i + 1) + (i < 3 ? " " + medals[i] : "") + '</td>' +
-        '<td class="tm">' + C.logoSVG(t, 22) + '<span>' + esc(t.name) + '</span></td>' +
+        '<td class="tm">' + exBadge(t, 22) + '<span>' + esc(t.name) + '</span></td>' +
         '<td>' + r.j + '</td><td>' + r.g + '</td><td>' + r.n + '</td><td>' + r.p + '</td>' +
         '<td>' + r.bp + '</td><td>' + r.bc + '</td>' +
         '<td>' + (r.diff > 0 ? "+" : "") + r.diff + '</td>' +
@@ -41,7 +55,7 @@
     s.teams.forEach(function (t) { if (pots[t.pot - 1]) pots[t.pot - 1].push(t); });
     var cols = pots.map(function (list, i) {
       var items = list.sort(function (a, b) { return b.pe - a.pe; }).map(function (t) {
-        return '<div class="xp-row">' + C.logoSVG(t, 20) + '<span class="xp-n">' + esc(t.name) + '</span>' +
+        return '<div class="xp-row">' + exBadge(t, 20) + '<span class="xp-n">' + esc(t.name) + '</span>' +
           '<span class="xp-pe">' + t.pe + '</span></div>';
       }).join("");
       return '<div class="xp-col"><div class="xp-h">Pot ' + (i + 1) + '</div>' + items + '</div>';
@@ -147,7 +161,7 @@
     var go = function () {
       html2canvas(sheet, { backgroundColor: "#0c0c0d", scale: 2, useCORS: true, logging: false })
         .then(function (canvas) { cb(canvas); })
-        .catch(function (e) { U.toast("Export impossible (réseau ?)"); console.warn(e); })
+        .catch(function (e) { U.toast("Export impossible — réessaie"); console.error("[EF26 export]", e); })
         .then(function () { if (sheet.parentNode) sheet.parentNode.removeChild(sheet); });
     };
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { setTimeout(go, 120); });
