@@ -69,3 +69,11 @@
   .bk-grid{min-width:820px}
   .bk-col{min-width:180px; padding:30px 14px 0}
 }
+
+/* --- refresh app --- */
+.bk-tie{background:var(--panel); border-radius:var(--radius-sm)}
+.bk-slot.win{background:rgba(255,199,44,.12)}
+.bk-slot.win .tb-name{color:var(--gold)}
+.bk-champ{background:linear-gradient(160deg,#2A2205,var(--panel)); border-color:var(--gold)}
+.bk-champ .nm.won{color:var(--gold)}
+.bk-link.won{stroke:var(--gold)}

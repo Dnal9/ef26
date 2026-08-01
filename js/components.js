@@ -25,7 +25,7 @@
   function teamColors(team) {
     var seed = hashStr(team.name || ("e" + team.id));
     var hue = seed % 360;                    // teinte stable par nom
-    return { light: hsl2hex(hue, 62, 56), dark: hsl2hex(hue, 66, 30) };
+    return { light: hsl2hex(hue, 58, 68), dark: hsl2hex(hue, 42, 26) };
   }
   function initials(name) {
     var parts = String(name).trim().split(/\s+/).filter(Boolean);
@@ -33,32 +33,22 @@
     return (s || "EF").toUpperCase();
   }
 
-  /* ---------- logo : ÉCUSSON arrondi (dégradé + liseré or + brillance + étoile) ---------- */
+  /* ---------- logo : FLAT / minimal e-sport (carré arrondi + initiales) ---------- */
   function logoSVG(team, size) {
-    size = size || 28;
+    size = size || 32;
     if (team.logo) {
       return '<img class="tb-logo" src="' + esc(team.logo) + '" width="' + size + '" height="' + size +
-        '" alt="" style="object-fit:cover">';
+        '" alt="" style="object-fit:cover;border-radius:9px">';
     }
     var col = teamColors(team);
-    var uid = "b" + team.id;
-    var fs = Math.round(size * 0.40);
-    var h = Math.round(size * 1.3); // écusson : plus haut que large
-    var crest = "M20 2 C33 2 38 9 38 21 C38 37 29 46 20 50 C11 46 2 37 2 21 C2 9 7 2 20 2 Z";
-    return '<svg class="tb-logo" width="' + size + '" height="' + h + '" viewBox="0 0 40 52" aria-hidden="true">' +
-      "<defs>" +
-        '<linearGradient id="g' + uid + '" x1="0" y1="0" x2="0" y2="1">' +
-          '<stop offset="0" stop-color="' + col.light + '"/><stop offset="1" stop-color="' + col.dark + '"/></linearGradient>' +
-        '<linearGradient id="s' + uid + '" x1="0" y1="0" x2="0" y2="1">' +
-          '<stop offset="0" stop-color="#ffffff" stop-opacity=".28"/><stop offset="0.55" stop-color="#ffffff" stop-opacity="0"/></linearGradient>' +
-      "</defs>" +
-      '<path d="' + crest + '" fill="url(#g' + uid + ')" stroke="#f7da86" stroke-width="2"/>' +
-      '<path d="' + crest + '" fill="url(#s' + uid + ')"/>' +
-      '<text x="20" y="23" text-anchor="middle" dominant-baseline="central" ' +
-        'font-family="Oswald,Arial,sans-serif" font-weight="700" font-size="' + fs + '" fill="#fff" ' +
-        'style="paint-order:stroke" stroke="rgba(0,0,0,.25)" stroke-width="0.6">' + esc(initials(team.name)) + "</text>" +
-      '<text x="20" y="42" text-anchor="middle" font-size="8" fill="#f7da86">★</text>' +
-      "</svg>";
+    var fs = Math.round(size * 0.42);
+    var r = Math.round(size * 0.28);
+    return '<svg class="tb-logo" width="' + size + '" height="' + size + '" viewBox="0 0 40 40" aria-hidden="true">' +
+      '<rect x="0" y="0" width="40" height="40" rx="' + (r * 40 / size) + '" fill="' + col.dark + '"/>' +
+      '<text x="20" y="21" text-anchor="middle" dominant-baseline="central" ' +
+        'font-family="Oswald,Arial,sans-serif" font-weight="700" font-size="' +
+        Math.round(fs * 40 / size) + '" fill="' + col.light + '" letter-spacing="0.5">' +
+        esc(initials(team.name)) + '</text></svg>';
   }
 
   /* tag court d'équipe (3 lettres) pour le style "club" */
@@ -114,36 +104,47 @@
       '<div class="sub">' + (o.sub || "") + "</div></div>";
   }
 
-  /* ---------- NAVBAR ---------- */
+  /* ---------- NAVIGATION : topbar + bottom nav (mobile) / sidebar (desktop) ---------- */
   var LINKS = [
-    ["index.html", "Accueil"],
-    ["classement.html", "Classement"],
-    ["matchs.html", "Matchs"],
-    ["eliminatoires.html", "Éliminatoires"],
-    ["statistiques.html", "Stats"],
-    ["equipes.html", "Équipes"]
+    ["index.html",         "Accueil",     "\u{1F3E0}"],
+    ["classement.html",    "Classement",  "\u{1F3C6}"],
+    ["statistiques.html",  "Stats",       "\u{1F4CA}"],
+    ["matchs.html",        "Calendrier",  "\u{1F4C5}"],
+    ["eliminatoires.html", "Matchs",      "\u2694\uFE0F"],
+    ["equipes.html",       "Équipes",     "\u{1F6E1}\uFE0F"]
   ];
   function navbar(active) {
-    var links = LINKS.map(function (l) {
-      return '<a href="' + l[0] + '"' + (l[0] === active ? ' class="active"' : "") + ">" + l[1] + "</a>";
+    var current = LINKS.filter(function (l) { return l[0] === active; })[0];
+
+    /* --- topbar (mobile) --- */
+    var top = document.createElement("nav");
+    top.className = "nav";
+    top.innerHTML = '<div class="nav-in">' +
+      '<a class="nav-logo" href="index.html"><span class="cup">\u{1F3C6}</span>EF<b>26</b></a>' +
+      '<span class="nav-page">' + (current ? current[1] : "") + '</span></div>';
+    document.body.prepend(top);
+
+    /* --- bottom navigation (mobile) --- */
+    var bot = document.createElement("nav");
+    bot.className = "botnav";
+    bot.setAttribute("aria-label", "Navigation principale");
+    bot.innerHTML = LINKS.map(function (l) {
+      return '<a href="' + l[0] + '"' + (l[0] === active ? ' class="active" aria-current="page"' : "") + '>' +
+        '<span class="ic">' + l[2] + '</span><span class="lb">' + l[1] + '</span></a>';
     }).join("");
-    var el = document.createElement("nav");
-    el.className = "nav";
-    el.innerHTML = '<div class="nav-in">' +
-      '<a class="nav-logo" href="index.html">' +
-      '<svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true">' +
-      '<defs><linearGradient id="nlg" x1="0" y1="0" x2="0" y2="1">' +
-      '<stop offset="0" stop-color="#f7da86"/><stop offset="1" stop-color="#b8862a"/></linearGradient></defs>' +
-      '<path d="M50 5 L88 22 V54 C88 76 71 90 50 96 C29 90 12 76 12 54 V22 Z" fill="#0c1a12" stroke="url(#nlg)" stroke-width="5"/>' +
-      '<text x="50" y="44" text-anchor="middle" font-family="Oswald,Arial,sans-serif" font-weight="700" font-size="30" fill="#edece3">EF</text>' +
-      '<text x="50" y="78" text-anchor="middle" font-family="Oswald,Arial,sans-serif" font-weight="700" font-size="33" fill="url(#nlg)">26</text>' +
-      "</svg>EF26 <b>·&nbsp;Final Chapter</b></a>" +
-      '<button class="nav-burger" aria-label="Menu">☰</button>' +
-      '<div class="nav-links">' + links + "</div></div>";
-    document.body.prepend(el);
-    var burger = el.querySelector(".nav-burger"), menu = el.querySelector(".nav-links");
-    burger.addEventListener("click", function () { menu.classList.toggle("open"); });
-    menu.addEventListener("click", function () { menu.classList.remove("open"); });
+    document.body.appendChild(bot);
+
+    /* --- sidebar (desktop) --- */
+    var side = document.createElement("aside");
+    side.className = "sidebar";
+    side.innerHTML =
+      '<a class="sb-logo" href="index.html"><span class="cup">\u{1F3C6}</span>EF<b>26</b></a>' +
+      LINKS.map(function (l) {
+        return '<a href="' + l[0] + '"' + (l[0] === active ? ' class="active" aria-current="page"' : "") + '>' +
+          '<span class="ic">' + l[2] + '</span>' + l[1] + '</a>';
+      }).join("") +
+      '<div class="sb-foot">Final Chapter · 28 équipes</div>';
+    document.body.prepend(side);
   }
 
   /* ---------- LOADER ---------- */

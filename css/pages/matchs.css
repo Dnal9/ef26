@@ -55,3 +55,14 @@
 
 .mx-empty{color:var(--dim); font-size:15px; padding:26px 8px; text-align:center;
   border:1px dashed var(--line); border-radius:var(--radius-sm)}
+
+/* --- refresh app --- */
+.mx-tab{min-height:42px; border-radius:22px}
+.mx-tab.active{background:var(--gold); color:#121212; box-shadow:none}
+.mx-chip{min-height:36px}
+.mx-chip.active{color:var(--gold); border-color:var(--gold); background:rgba(255,199,44,.10)}
+.mx-day-head{background:var(--panel); border-color:var(--line); border-radius:var(--radius-sm)}
+.mx-day-head .dj{color:var(--gold)}
+.mx-bar i{background:var(--gold)}
+.mx-list{gap:8px}
+@media (max-width:767px){ .mx-list{grid-template-columns:1fr} }

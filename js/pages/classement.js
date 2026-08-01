@@ -33,6 +33,16 @@
   ];
   var showOdds = false;   // masqué par défaut
   var oddsData = null;
+  /* --- surlignage "mon équipe" : simple préférence d'affichage locale --- */
+  var ME_KEY = "ef26_me";
+  var meId = null;
+  try { var mv = localStorage.getItem(ME_KEY); if (mv !== null) meId = parseInt(mv, 10); } catch (e) {}
+  function setMe(id) {
+    meId = (meId === id) ? null : id;
+    try { meId === null ? localStorage.removeItem(ME_KEY) : localStorage.setItem(ME_KEY, meId); } catch (e) {}
+    render(Store.get(), false);
+  }
+  var prevPts = {};   // pour l'animation de mise à jour
   var DESC_FIRST = { j:1, g:1, bp:1, diff:1, pts:1, n:1, p:1, bc:1 }; // colonnes chiffrées : desc d'abord
 
   /* ---------- construction du DOM (1 tr par équipe, réutilisé) ---------- */
@@ -105,7 +115,11 @@
       var tr = rowMap[r.id]; if (!tr) return;
       var t = o.byId[r.id], rank = o.rankOf[r.id];
       var zone = Logic.zone(rank);
-      tr.className = "zone-" + zone + (rank < 3 ? " p" + (rank + 1) : "");
+      var changed = prevPts[r.id] !== undefined && prevPts[r.id] !== r.pts;
+      tr.className = "zone-" + zone + (rank < 3 ? " p" + (rank + 1) : "") +
+        (meId === r.id ? " me" : "") + (changed ? " updated" : "");
+      prevPts[r.id] = r.pts;
+      tr.setAttribute("data-tid", r.id);
       var med = rank < 3 ? '<span class="medal">' + medals[rank] + "</span>" : "";
       tr.children[0].innerHTML = (rank + 1) + med;
       tr.children[1].innerHTML = C.teamBadge(t);
@@ -221,6 +235,13 @@
   buildHead();
   buildRows();
   U.$("cl-odds").addEventListener("click", toggleOdds);
+
+  /* clic sur le numéro de rang = surligner / dé-surligner mon équipe */
+  U.$("cl-body").addEventListener("click", function (e) {
+    var cell = e.target.closest("td.pos"); if (!cell) return;
+    var tr = cell.closest("tr"); if (!tr || !tr.dataset.tid) return;
+    setMe(parseInt(tr.dataset.tid, 10));
+  });
 
   render(Store.get(), false);
   renderPodium(Store.get());

@@ -75,3 +75,12 @@
 .eq-row .rP{background:#331512; color:#e89b93}
 .eq-row.up .sc{color:var(--muted); font-weight:500}
 .eq-empty-row{color:var(--dim); font-size:13.5px; padding:2px 0}
+
+/* --- refresh app --- */
+.eq{border-radius:var(--radius); background:var(--panel)}
+.eq-head{background:transparent; border-color:var(--line)}
+.eq:target{border-color:var(--gold); box-shadow:0 0 0 2px rgba(255,199,44,.25)}
+.eq-head .eq-rank .r.z-q{color:var(--gold)}
+.eq-head .eq-rank .r.z-b{color:var(--amber)}
+.eq-grid{grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:12px}
+@media (max-width:767px){ .eq-grid{grid-template-columns:1fr} }

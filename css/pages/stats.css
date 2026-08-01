@@ -20,3 +20,11 @@
   background:var(--gold); border-radius:2px}
 .st-chart .ch-sub{font-size:13px; color:var(--muted); margin-bottom:10px}
 .st-chart canvas{width:100%; height:300px; display:block}
+
+/* --- dashboard app --- */
+.st-grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px}
+@media (max-width:480px){ .st-grid{grid-template-columns:1fr 1fr} }
+.st-chart{border-radius:var(--radius); background:var(--panel)}
+.st-chart .ch-title::before{background:var(--gold)}
+.st-chart canvas{height:280px}
+@media (max-width:767px){ .st-chart canvas{height:240px} }

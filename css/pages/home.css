@@ -5,12 +5,9 @@
 /* ---------- HERO ---------- */
 .hero{
   position:relative; margin-top:18px; padding:34px 28px 30px;
-  border:1px solid var(--line-2); border-radius:var(--radius);
-  background:
-    radial-gradient(720px 240px at 18% -40%, rgba(232,178,58,.20), transparent 60%),
-    radial-gradient(520px 200px at 90% 0%,  rgba(214,203,176,.08), transparent 60%),
-    linear-gradient(180deg,#12241a,#0c1a12);
-  box-shadow:var(--shadow-lg); overflow:hidden;
+  border:1px solid var(--line); border-radius:var(--radius);
+  background:linear-gradient(160deg,#1F1A0C,var(--panel) 60%);
+  box-shadow:var(--shadow); overflow:hidden;
 }
 .hero::after{
   content:""; position:absolute; inset:0; pointer-events:none;
@@ -30,11 +27,11 @@
   letter-spacing:3px; font-size:clamp(13px,2.4vw,17px); color:var(--gold-lt)}
 .hero-live{margin-left:auto; align-self:flex-start; display:inline-flex; align-items:center; gap:7px;
   font-family:var(--ff-head); text-transform:uppercase; letter-spacing:1px; font-size:12px;
-  color:var(--teal); border:1px solid var(--line-2); border-radius:20px; padding:5px 11px;
+  color:var(--teal); border:1px solid var(--line); border-radius:20px; padding:5px 11px;
   background:#0c1a14}
 .hero-live .pulse{width:8px; height:8px; border-radius:50%; background:var(--teal);
   animation:pulse 1.8s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(214,203,176,.5)}70%{box-shadow:0 0 0 9px rgba(214,203,176,0)}100%{box-shadow:0 0 0 0 rgba(214,203,176,0)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,199,44,.5)}70%{box-shadow:0 0 0 9px rgba(255,199,44,0)}100%{box-shadow:0 0 0 0 rgba(255,199,44,0)}}
 
 /* ---------- GRILLE MATCHS DU JOUR ---------- */
 .home-duo{display:grid; grid-template-columns:1fr 1fr; gap:14px}
@@ -62,3 +59,11 @@
 .qk .qs{font-size:13px; color:var(--muted)}
 .qk .qa{margin-top:4px; font-family:var(--ff-head); font-size:11px; letter-spacing:1px;
   text-transform:uppercase; color:var(--gold)}
+
+/* --- refresh app --- */
+.hero{border-radius:var(--radius)}
+.hero-logo{animation:none}
+.qk{min-height:96px; border-radius:var(--radius-sm); background:var(--panel)}
+.qk:active{transform:scale(.97)}
+.quick{grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px}
+@media (max-width:480px){ .quick{grid-template-columns:1fr 1fr} }

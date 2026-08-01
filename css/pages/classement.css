@@ -1,66 +1,142 @@
 /* ============================================================
-   EF26 — css/pages/classement.css : identité de la page Classement
+   EF26 — css/pages/classement.css
+   Lignes-cartes (pas un tableur) · Mobile first
+   Mobile : #, Logo, Nom(~45%), MJ, Diff, Pts
+   Desktop : + V, N, D, BP:BC, Forme
    ============================================================ */
 
 /* ---------- BARRE D'OUTILS ---------- */
-.cl-toolbar{display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:14px}
-.cl-search{position:relative; flex:1 1 220px; max-width:340px}
-.cl-search input{padding-left:36px; height:42px; font-size:16px}
-.cl-search .ic{position:absolute; left:12px; top:50%; transform:translateY(-50%);
+.cl-toolbar{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:12px}
+.cl-search{position:relative; flex:1 1 200px}
+.cl-search input{padding-left:40px; height:46px; font-size:16px; border-radius:12px}
+.cl-search .ic{position:absolute; left:14px; top:50%; transform:translateY(-50%);
   color:var(--muted); font-size:15px; pointer-events:none}
 .cl-count{font-family:var(--ff-head); font-size:12px; letter-spacing:1px;
   text-transform:uppercase; color:var(--muted)}
+.cl-odds-btn{margin-left:auto}
+.cl-odds-btn.on{border-color:var(--gold); color:var(--gold)}
+.cl-odds-note{margin:10px 2px 0; font-size:13.5px; line-height:1.45}
 
-/* ---------- TABLE ---------- */
-.cl table{min-width:760px}
-.cl thead th{cursor:pointer; user-select:none; white-space:nowrap; transition:color .15s}
-.cl thead th:hover{color:var(--bone)}
-.cl thead th.sorted{color:var(--gold)}
-.cl thead th .arr{font-size:9px; margin-left:4px; opacity:.9}
+/* ---------- CONTENEUR : plus de "tableur" ---------- */
+.cl{background:transparent; border:none; box-shadow:none}
+.cl .scroll-x{overflow:visible}
+.cl table{width:100%; border-collapse:separate; border-spacing:0 8px}
+
+/* en-têtes discrets */
+.cl thead th{
+  font-family:var(--ff-head); font-weight:500; text-transform:uppercase; letter-spacing:1px;
+  font-size:11px; color:var(--muted); padding:2px 6px 6px; background:transparent;
+  cursor:pointer; user-select:none; white-space:nowrap; position:static;
+}
 .cl thead th.no-sort{cursor:default}
-.cl thead th.no-sort:hover{color:var(--muted)}
+.cl thead th.sorted{color:var(--gold)}
+.cl thead th .arr{font-size:8px; margin-left:3px}
 
-.cl tbody tr{transition:background .15s; will-change:transform}
-.cl tbody tr:hover{background:#14261d}
-.cl td.pos{font-family:var(--ff-head); font-weight:700; width:46px; font-size:16px}
-.cl td.team{text-align:left; min-width:190px}
-.cl td.pts{font-family:var(--ff-head); font-weight:700; color:var(--gold); font-size:17px}
-.cl td.diff.plus{color:#e8c977}
-.cl td.diff.minus{color:#e89b93}
+/* ---------- LIGNE = CARTE ---------- */
+.cl tbody tr{
+  background:var(--panel);
+  transition:background var(--t), transform var(--t), box-shadow var(--t);
+}
+.cl tbody tr td{
+  height:56px; padding:6px 8px; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  background:transparent;
+}
+.cl tbody tr td:first-child{
+  border-left:1px solid var(--line);
+  border-radius:var(--radius-sm) 0 0 var(--radius-sm);
+  position:relative; padding-left:14px;
+}
+.cl tbody tr td:last-child{
+  border-right:1px solid var(--line);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+}
+.cl tbody tr:active{transform:scale(.995); background:#242424}
+@media (hover:hover){
+  .cl tbody tr:hover{background:#242424; box-shadow:var(--shadow)}
+}
 
-/* zones (liseré gauche) */
-.cl .zone-q td:first-child{box-shadow:inset 4px 0 0 var(--green)}
-.cl .zone-b td:first-child{box-shadow:inset 4px 0 0 var(--amber)}
-.cl .zone-o{opacity:.6}
-.cl .zone-o td:first-child{box-shadow:inset 4px 0 0 var(--dim)}
+/* barre de zone (or / orange / rouge) */
+.cl tbody tr td:first-child::before{
+  content:""; position:absolute; left:0; top:8px; bottom:8px; width:4px; border-radius:0 4px 4px 0;
+}
+.cl .zone-q td:first-child::before{background:var(--z-top)}
+.cl .zone-b td:first-child::before{background:var(--z-mid)}
+.cl .zone-o td:first-child::before{background:var(--z-out); opacity:.65}
+.cl .zone-o{opacity:.72}
 
-/* podium dans la table */
-.cl .p1 td{background:linear-gradient(90deg,rgba(255,216,90,.10),transparent 55%)}
-.cl .p2 td{background:linear-gradient(90deg,rgba(207,214,218,.08),transparent 55%)}
-.cl .p3 td{background:linear-gradient(90deg,rgba(213,155,102,.08),transparent 55%)}
-.cl .medal{margin-left:6px; font-size:13px}
+/* podium : liseré coloré */
+.cl .p1{box-shadow:inset 0 0 0 1px rgba(255,199,44,.45)}
+.cl .p2{box-shadow:inset 0 0 0 1px rgba(200,205,210,.35)}
+.cl .p3{box-shadow:inset 0 0 0 1px rgba(212,139,66,.35)}
+
+/* ---------- CELLULES ---------- */
+.cl td.pos{font-family:var(--ff-head); font-weight:700; font-size:17px; width:52px; color:var(--bone)}
+.cl .p1 .pos{color:var(--gold)} .cl .p2 .pos{color:var(--silver)} .cl .p3 .pos{color:var(--bronze)}
+.cl .medal{display:none}                    /* le liseré suffit : moins de bruit visuel */
+.cl td.team{text-align:left; width:45%; min-width:0}
+.cl td.team .tb-name{font-size:16px; font-weight:600}
+.cl td.pts{
+  font-family:var(--ff-head); font-weight:700; color:var(--gold); font-size:21px; width:56px;
+}
+.cl td.diff{font-family:var(--ff-head); font-weight:600; font-size:15px; width:56px}
+.cl td.diff.plus{color:var(--green)}
+.cl td.diff.minus{color:var(--red)}
+.cl .c-j{color:var(--muted); font-size:15px; width:44px}
+
+/* joueur surligné (moi) */
+.cl tbody tr.me{background:rgba(255,199,44,.09)}
+.cl tbody tr.me td{border-color:rgba(255,199,44,.45)}
+
+/* animation quand une ligne se met à jour */
+@keyframes flashRow{0%{background:rgba(255,199,44,.22)}100%{background:var(--panel)}}
+.cl tbody tr.updated{animation:flashRow 1.1s ease-out}
 
 /* forme (5 derniers) */
 .cl .forme{display:inline-flex; gap:3px}
-.cl .forme i{width:16px; height:16px; border-radius:4px; font-style:normal;
-  font-family:var(--ff-head); font-size:10px; font-weight:600;
+.cl .forme i{width:19px; height:19px; border-radius:5px; font-style:normal;
+  font-family:var(--ff-head); font-size:10.5px; font-weight:600;
   display:inline-flex; align-items:center; justify-content:center}
-.cl .forme .fG{background:var(--green-bg); color:#e8c977}
+.cl .forme .fG{background:var(--green-bg); color:var(--green)}
 .cl .forme .fN{background:var(--dim-bg); color:var(--muted)}
-.cl .forme .fP{background:#331512; color:#e89b93}
-
-@media (max-width:640px){
-  .cl-search{max-width:none}
-}
+.cl .forme .fP{background:rgba(255,69,58,.16); color:var(--red)}
 
 /* ---------- PROBABILITÉS (masquées par défaut) ---------- */
-.cl-odds-btn{margin-left:auto}
-.cl-odds-btn.on{border-color:var(--gold); color:var(--gold)}
-.cl-odds-note{margin:10px 2px 0; font-size:13.5px; line-height:1.4}
-.cl .odds-col{display:none}                 /* cachées par défaut */
-.cl.show-odds .odds-col{display:table-cell}  /* révélées au clic */
-.cl .odds-cell{display:flex; flex-direction:column; align-items:center; gap:3px; min-width:60px}
+.cl .odds-col{display:none}
+.cl.show-odds .odds-col{display:table-cell}
+.cl .odds-cell{display:flex; flex-direction:column; align-items:center; gap:4px; min-width:56px}
 .cl .odds-cell .ov{font-family:var(--ff-head); font-weight:700; font-size:14px}
-.cl .odds-cell .ob{width:52px; height:4px; border-radius:3px; background:var(--dim-bg); overflow:hidden}
+.cl .odds-cell .ob{width:46px; height:4px; border-radius:3px; background:var(--dim-bg); overflow:hidden}
 .cl .odds-cell .ob b{display:block; height:100%; border-radius:3px}
-.cl.show-odds table{min-width:920px}
+
+/* ============================================================
+   MOBILE : on ne garde que #, Logo, Nom, MJ, Diff, Pts
+   ============================================================ */
+@media (max-width:767px){
+  .cl td.c-g, .cl td.c-n, .cl td.c-p, .cl td.c-bp, .cl td.c-bc, .cl td.c-f,
+  .cl th[data-col="g"], .cl th[data-col="n"], .cl th[data-col="p"],
+  .cl th[data-col="bp"], .cl th[data-col="bc"], .cl th[data-col="forme"]{display:none}
+
+  .cl tbody tr td{height:56px; padding:6px 6px}
+  .cl td.pos{width:42px; font-size:16px; padding-left:12px}
+  .cl td.team{width:45%}
+  .cl td.team .tb-name{font-size:15.5px}
+  .cl td.team .tb-logo{width:32px !important; height:32px !important}
+  .cl td.pts{font-size:20px; width:48px}
+  .cl td.diff{width:46px; font-size:14.5px}
+  .cl .c-j{width:38px; font-size:14.5px}
+  .cl-odds-btn{margin-left:0; width:100%; justify-content:center}
+  .cl.show-odds .odds-cell .ob{width:38px}
+}
+
+/* très petits écrans (360px) */
+@media (max-width:380px){
+  .cl td.team .tb{gap:8px}
+  .cl td.team .tb-name{font-size:15px}
+  .cl td.pts{font-size:19px; width:44px}
+}
+
+/* desktop : lignes 60px */
+@media (min-width:768px){
+  .cl tbody tr td{height:60px}
+  .cl td.team .tb-logo{width:34px !important; height:34px !important}
+}

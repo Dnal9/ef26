@@ -1,56 +1,64 @@
 /* ============================================================
-   EF26 · FINAL CHAPTER — css/tokens.css
-   Thème : NOIR & OR (luxe minimal)
-   Source unique de vérité du design. Tout le site pioche ici.
+   EF26 — css/tokens.css · Design system "App Android e-sport"
    ============================================================ */
 :root{
-  /* --- Couleurs : noir profond, or de champion --- */
-  --bg:        #0c0c0d;
-  --bg-2:      #121211;
-  --panel:     #17171a;
-  --panel-2:   #141413;
-  --line:      #2a2823;
-  --line-2:    #3a3730;
+  /* --- Surfaces --- */
+  --bg:        #121212;
+  --bg-2:      #171717;
+  --panel:     #1C1C1C;
+  --panel-2:   #202020;
+  --line:      #2A2A2A;
+  --line-2:    #363636;
+  --glass:     rgba(28,28,28,.72);
 
-  --gold:      #e8b23a;
-  --gold-lt:   #f7da86;
-  --gold-dp:   #b8862a;
-  --teal:      #d6cbb0;   /* accent secondaire = argent chaud / champagne */
-  --bone:      #f2f0ea;
-  --muted:     #9a968a;
-  --dim:       #6a665c;
+  /* --- Texte --- */
+  --bone:      #FFFFFF;
+  --muted:     #B8B8B8;
+  --dim:       #7A7A7A;
 
-  --green:     #d0a83e;   /* zone "qualifié" = or clair */
-  --amber:     #c98a2b;   /* zone "barrage"  = or foncé/bronze */
-  --red:       #c0554b;
-  --green-bg:  #2a2210;
-  --amber-bg:  #241a0c;
-  --dim-bg:    #1c1b17;
+  /* --- Accents --- */
+  --gold:      #FFC72C;
+  --gold-lt:   #FFD866;
+  --gold-dp:   #C99A16;
+  --silver:    #C8CDD2;
+  --bronze:    #D48B42;
+  --green:     #34C759;
+  --red:       #FF453A;
+  --teal:      #C8CDD2;
+
+  /* --- Zones de qualification --- */
+  --z-top:     #FFC72C;   /* 1–4  */
+  --z-mid:     #FF9F0A;   /* 5–12 */
+  --z-out:     #FF453A;   /* 13+  */
+  --green-bg:  #16331F;
+  --amber-bg:  #33280C;
+  --dim-bg:    #242424;
+  --amber:     #FF9F0A;
 
   /* --- Typographie --- */
   --ff-disp: "Anton", sans-serif;
   --ff-head: "Oswald", sans-serif;
   --ff-body: "Barlow Condensed","Segoe UI",system-ui,sans-serif;
-
-  --fs-hero:  clamp(38px, 7vw, 64px);
-  --fs-h2:    20px;
+  --fs-hero:  clamp(34px, 7vw, 60px);
+  --fs-h2:    19px;
   --fs-body:  16px;
   --fs-small: 14px;
 
   /* --- Espacements --- */
-  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
-  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px;
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px;
+  --sp-5:24px; --sp-6:32px; --sp-7:48px;
 
   /* --- Rayons & ombres --- */
-  --radius:    14px;
-  --radius-sm: 9px;
-  --radius-xs: 6px;
-  --shadow:    0 10px 30px rgba(0,0,0,.45);
-  --shadow-lg: 0 20px 60px rgba(0,0,0,.6);
-  --glow-gold: 0 0 14px rgba(232,178,58,.5);
+  --radius:14px; --radius-sm:12px; --radius-xs:8px;
+  --shadow:    0 2px 10px rgba(0,0,0,.45);
+  --shadow-lg: 0 12px 34px rgba(0,0,0,.6);
+  --glow-gold: 0 0 16px rgba(255,199,44,.45);
 
-  /* --- Divers --- */
-  --nav-h: 58px;
-  --maxw:  1080px;
-  --ease:  cubic-bezier(.2,.8,.2,1);
+  /* --- Layout --- */
+  --nav-h: 58px;        /* topbar mobile */
+  --botnav-h: 64px;     /* bottom navigation mobile */
+  --side-w: 232px;      /* sidebar desktop */
+  --maxw: 1180px;
+  --ease: cubic-bezier(.2,.8,.2,1);
+  --t: .25s;
 }
